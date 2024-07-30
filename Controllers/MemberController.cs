@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Unique.DataContext;
+using Unique.Models.member;
 
 namespace Unique.Controllers
 {
@@ -11,78 +13,124 @@ namespace Unique.Controllers
             return View();
         }
 
+        [HttpGet]
         public ActionResult Login()
         {
             return View();
         }
 
-        // GET: MemberController/Details/5
-        public ActionResult Details(int id)
+        public ActionResult LogOut()
+
         {
-            return View();
+            HttpContext.Session.Remove("memberId");
+
+            return RedirectToAction("Index", "Home");
         }
 
-        // GET: MemberController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: MemberController/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Login(MemberLogin model)
         {
-            try
+
+            if (ModelState.IsValid)
             {
-                return RedirectToAction(nameof(Index));
+
+                using (var db = new UniqueDb())
+                {
+                    var member = db.Members.FirstOrDefault(m => m.userId.Equals(model.userId) && m.pwd.Equals(model.pwd));
+
+                    if (member != null)
+                    {
+
+                        HttpContext.Session.SetInt32("memberId", member.memberId);
+                        HttpContext.Session.SetString("userId", member.userId);
+
+                        return RedirectToAction("Index", "Home");
+                    }
+
+                }
+
+                ModelState.AddModelError(string.Empty, "사용자 ID 혹은 비밀번호가 올바르지 않습니다.");
             }
-            catch
-            {
-                return View();
-            }
+
+            return View(model);
         }
 
-        // GET: MemberController/Edit/5
-        public ActionResult Edit(int id)
+        [HttpGet]
+        public ActionResult Register()
         {
             return View();
+
         }
 
-        // POST: MemberController/Edit/5
+        //아이디중복체크
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult IdCheck(String userId)
         {
-            try
+
+
+            using (var db = new UniqueDb())
             {
-                return RedirectToAction(nameof(Index));
+
+                var CheckuserId = db.Members.FirstOrDefault(m => m.userId.Equals(userId));
+
+                return Json(CheckuserId);
             }
-            catch
-            {
-                return View();
-            }
+
         }
 
-        // GET: MemberController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: MemberController/Delete/5
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Register(Member model)
         {
-            try
+            if (ModelState.IsValid)
             {
-                return RedirectToAction(nameof(Index));
+
+                using (var db = new UniqueDb())
+                {
+
+
+
+                    var userId = db.Members.FirstOrDefault(m => m.userId.Equals(model.userId));
+                    var nickName = db.Members.FirstOrDefault(m => m.nickName.Equals(model.nickName));
+                    var tel = db.Members.FirstOrDefault(m => m.tel.Equals(model.tel));
+                    var email = db.Members.FirstOrDefault(m => m.email.Equals(model.email));
+
+
+
+
+                    if (userId != null || nickName != null || tel != null || email != null)
+                    {
+
+                        ViewBag.userId = userId;
+                        ViewBag.nickName = nickName;
+                        ViewBag.tel = tel;
+                        ViewBag.email = email;
+                        return View(model);
+                    }
+
+
+
+                    else
+                    {
+
+
+
+                        db.Members.Add(model);
+                        db.SaveChanges();
+
+                    }
+                }
+                return Redirect("Login");
+
+
             }
-            catch
-            {
-                return View();
-            }
+
+
+            return View(model);
         }
+
+
+
+
+
     }
 }

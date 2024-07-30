@@ -1,4 +1,4 @@
-﻿
+﻿@model Unique.Models.member.MemberLogin
 <div class="main">
     <section class="module bg-dark-30" data-background="assets/images/section-4.jpg" style="background-color:gray;">
         <div class="container">
@@ -17,40 +17,29 @@
             <div class="col-sm-5 col-sm-offset-1 mb-sm-40">
                 <h4 class="font-alt">Login</h4>
                 <hr class="divider-w mb-10">
-                <form class="form">
+                    <form class="form-horizontal" method="post" asp-controller="Member" asp-action="Login">
+                        <div class="text-danger" asp-validation-summary="ModelOnly"></div>
                     <div class="form-group">
-                        <input class="form-control" id="username" type="text" name="username" placeholder="Username" />
+                            <input type="text" class="form-control" asp-for="userId" placeholder="사용자 ID 입력" />
+                            <span class="text-danger" asp-validation-for="userId"></span>
                     </div>
+
+
+
                     <div class="form-group">
-                        <input class="form-control" id="password" type="password" name="password" placeholder="Password" />
+                            <input type="text" class="form-control" asp-for="pwd" placeholder="사용자 ID 입력" />
+                            <span class="text-danger" asp-validation-for="pwd"></span>
                     </div>
                     <div class="form-group">
                         <button class="btn btn-round btn-b">Login</button>
                     </div>
-                    <div class="form-group"><a href="">Forgot Password?</a></div>
+                        <div class="form-group">
+                            <a href="">Forgot Password?</a>&nbsp&nbsp;
+                            <a href="/Member/Register">Register?</a>
+                        </div>
                 </form>
             </div>
-            <div class="col-sm-5">
-                <h4 class="font-alt">Register</h4>
-                <hr class="divider-w mb-10">
-                <form class="form">
-                    <div class="form-group">
-                        <input class="form-control" id="E-mail" type="text" name="email" placeholder="Email" />
-                    </div>
-                    <div class="form-group">
-                        <input class="form-control" id="username" type="text" name="username" placeholder="Username" />
-                    </div>
-                    <div class="form-group">
-                        <input class="form-control" id="password" type="password" name="password" placeholder="Password" />
-                    </div>
-                    <div class="form-group">
-                        <input class="form-control" id="re-password" type="password" name="re-password" placeholder="Re-enter Password" />
-                    </div>
-                    <div class="form-group">
-                        <button class="btn btn-block btn-round btn-b">Register</button>
-                    </div>
-                </form>
-            </div>
+           
         </div>
     </div>
 </section>
