@@ -14,42 +14,41 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-6 col-sm-offset-3">
-                 
                 </div>
             </div>
         </div>
 
-        </section>
+    </section>
 
-<section class="module">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-5 col-sm-offset-1 mb-sm-40">
-                <h4 class="font-alt">Login</h4>
-                <hr class="divider-w mb-10">
+    <section class="module">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-5 col-sm-offset-1 mb-sm-40">
+                    <h4 class="font-alt">비밀번호 찾기</h4>
+                    <hr class="divider-w mb-10">
                     <form class="form-horizontal" method="post" asp-controller="Member" asp-action="Login">
                         <div class="text-danger" asp-validation-summary="ModelOnly"></div>
-                    <div class="form-group">
+                        <div class="form-group">
                             <input type="text" class="form-control" asp-for="userId" placeholder="사용자 ID 입력" />
                             <span class="text-danger" asp-validation-for="userId"></span>
-                    </div>
+                        </div>
 
 
 
-                    <div class="form-group">
+                        <div class="form-group">
                             <input type="text" class="form-control" asp-for="pwd" placeholder="사용자 ID 입력" />
                             <span class="text-danger" asp-validation-for="pwd"></span>
-                    </div>
-                    <div class="form-group">
-                        <button class="btn btn-round btn-b">Login</button>
-                    </div>
+                        </div>
                         <div class="form-group">
-                            <a href="/Member/SearchPwd">Forgot Password?</a>&nbsp&nbsp;
+                            <button class="btn btn-round btn-b">Login</button>
+                        </div>
+                        <div class="form-group">
+                            <a href="/Member/SearchUserId">Forgot Id?</a>&nbsp&nbsp;
                             <a href="/Member/Register">Register?</a>
                         </div>
-                </form>
+                    </form>
+                </div>
+
             </div>
-           
         </div>
-    </div>
-</section>
+    </section>

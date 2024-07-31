@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Data.Entity;
 using Unique.DataContext;
 using Unique.Models.member;
 
@@ -129,6 +130,46 @@ namespace Unique.Controllers
         }
 
 
+        public ActionResult SearchUserId()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult SearchUserId(Member model)
+        {
+          
+          
+
+            using (var db = new UniqueDb())
+
+            { 
+                var id  = db.Members.FirstOrDefault(m => m.userName.Equals(model.userName) && m.pwd.Equals(model.pwd));
+
+                if (id != null) {
+
+
+                   
+
+
+
+                   // Console.WriteLine(ViewBag.id);
+                    ViewBag.userId = id.userId;
+                   // model.userId = id.userId;
+                    return View(model);
+                }
+                 
+                }
+                ModelState.AddModelError(string.Empty, "해당 사용자 아이디는 존재하지 않습니다.");
+             
+         
+
+            return View(model);
+        }
+
+        public ActionResult SearchPwd()
+        {
+            return View();
+        }
 
 
 

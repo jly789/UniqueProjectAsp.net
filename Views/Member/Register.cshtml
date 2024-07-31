@@ -11,6 +11,15 @@
 
 }
 
+<style>
+
+    .form-control {
+        text-transform: lowercase;
+    }
+
+
+
+</style>
 
 <div class="main">
     <section class="module bg-dark-30" data-background="assets/images/section-4.jpg" style="background-color:gray;">
@@ -35,7 +44,7 @@
 
                             <div class="form-group">
                                 
-                                <input type="text" class="form-control" id="userId" name="userId"  placeholder="ID 입력" />
+                                <input type="text" class="form-control"  id="userId" name="userId" placeholder="ID 입력" />
                                 <span class="text-danger" asp-validation-for="userId"></span>
                                 <span class="text-danger">
                                     @if (@ViewBag.userId != null)
