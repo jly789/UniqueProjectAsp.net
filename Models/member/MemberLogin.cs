@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Unique.Models.member
+namespace Unique.Models.Member
 {
     public class MemberLogin
     {

@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿
 using Microsoft.AspNetCore.Mvc;
-using System.Data.Entity;
+using System.Text.RegularExpressions;
 using Unique.DataContext;
-using Unique.Models.member;
+using Unique.Models;
+using Unique.Models.Member;
+
 
 namespace Unique.Controllers
 {
@@ -11,6 +13,9 @@ namespace Unique.Controllers
         // GET: MemberController
         public ActionResult Index()
         {
+          
+            Console.WriteLine("asdas");
+
             return View();
         }
 
@@ -32,6 +37,7 @@ namespace Unique.Controllers
         public ActionResult Login(MemberLogin model)
         {
 
+           
             if (ModelState.IsValid)
             {
 
@@ -85,6 +91,17 @@ namespace Unique.Controllers
             if (ModelState.IsValid)
             {
 
+                String pattern = @"^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$";
+                String Msg = "이메일 형식이 올바르지 않습니다";
+                bool isValid = Regex.IsMatch(model.email, pattern);
+                if (isValid) { 
+                 
+                }
+                else {
+
+                    ViewBag.ErrorMessage = Msg;
+                    return View(model);
+                }
                 using (var db = new UniqueDb())
                 {
 
@@ -165,10 +182,43 @@ namespace Unique.Controllers
 
             return View(model);
         }
-
+        [HttpGet]
         public ActionResult SearchPwd()
         {
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult SearchPwd(Member model)
+        {
+
+
+
+            using (var db = new UniqueDb())
+
+            {
+                var pwd = db.Members.FirstOrDefault(m => m.userId.Equals(model.userId) && m.email.Equals(model.email));
+
+                if (pwd != null)
+                {
+
+
+
+
+
+
+                    // Console.WriteLine(ViewBag.id);
+                    ViewBag.Pwd = pwd.pwd;
+                    // model.userId = id.userId;
+                    return View(model);
+                }
+
+            }
+            ModelState.AddModelError(string.Empty, "해당 사용자의 비밀번호는 존재하지 않습니다.");
+
+
+
+            return View(model);
         }
 
 

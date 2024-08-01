@@ -1,5 +1,17 @@
-﻿@model Unique.Models.member.MemberLogin
+﻿@model Unique.Models.Member.Member
 
+
+@{
+
+
+
+    String Pwd = ViewBag.Pwd;
+
+
+
+
+
+}
 
 <style>
 
@@ -25,30 +37,57 @@
             <div class="row">
                 <div class="col-sm-5 col-sm-offset-1 mb-sm-40">
                     <h4 class="font-alt">비밀번호 찾기</h4>
+
+                    @if (@Pwd != null)
+                    {
+
+                        <p style="color:red;">찾는 사용자의 비밀번호는 @Pwd 입니다. </p>
+
+                    }
+
+
+                    @*       @if (Model.userId != null)
+                    {
+                    <p>찾는 사용자의 아이디는 @Model.userId 입니다. </p>
+                    }
+
+
+                    ViewBag.id *@
+
+
                     <hr class="divider-w mb-10">
-                    <form class="form-horizontal" method="post" asp-controller="Member" asp-action="Login">
+                    <form class="form-horizontal" method="post" asp-controller="Member" asp-action="SearchPwd">
                         <div class="text-danger" asp-validation-summary="ModelOnly"></div>
                         <div class="form-group">
-                            <input type="text" class="form-control" asp-for="userId" placeholder="사용자 ID 입력" />
+                            <input type="text" class="form-control" asp-for="userId" placeholder="사용자 아이디 입력" />
                             <span class="text-danger" asp-validation-for="userId"></span>
                         </div>
 
 
 
+
+
+
                         <div class="form-group">
-                            <input type="text" class="form-control" asp-for="pwd" placeholder="사용자 ID 입력" />
-                            <span class="text-danger" asp-validation-for="pwd"></span>
+                            <input type="text" class="form-control" asp-for="email" placeholder="사용자 이메일 입력" />
+                            <span class="text-danger" asp-validation-for="email"></span>
                         </div>
                         <div class="form-group">
-                            <button class="btn btn-round btn-b">Login</button>
-                        </div>
-                        <div class="form-group">
-                            <a href="/Member/SearchUserId">Forgot Id?</a>&nbsp&nbsp;
-                            <a href="/Member/Register">Register?</a>
-                        </div>
+
+                            <button class="btn btn-round btn-b">비밀번호 찾기</button>
                     </form>
+
+
+
+                </div>
+                <div class="form-group">
+                    <a href="/Member/SearchPwd">Forgot Id?</a>&nbsp&nbsp;
+
+                    <a href="/Member/Login">Login?</a>
                 </div>
 
             </div>
+
         </div>
+</div>
     </section>

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Unique.Models.member
+namespace Unique.Models.Member
 {
     public class Member
     {
@@ -9,9 +9,9 @@ namespace Unique.Models.member
         public int memberId { get; set; }
 
 
-      
 
-        [Required(ErrorMessage ="아이디를 입력하세요")]
+
+        [Required(ErrorMessage = "아이디를 입력하세요")]
         public String? userId { get; set; }
 
         [Required(ErrorMessage = "비밀번호를 입력하세요")]
@@ -35,11 +35,11 @@ namespace Unique.Models.member
         public String? extraAddress { get; set; }
 
         [Required(ErrorMessage = "이메일을 입력하세요")]
+
         public String? email { get; set; }
 
         [Required(ErrorMessage = "생일을 입력하세요")]
         public DateTime? birth { get; set; }
-
 
     }
 }

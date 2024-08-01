@@ -1,0 +1,132 @@
+﻿
+
+drop table Members;
+drop table Categorys;
+drop table SubCategorys;
+drop table Products;
+
+
+CREATE TABLE [dbo].[Members] (
+    [memberId]      INT           IDENTITY (1, 1) NOT NULL,
+    [role]          VARCHAR (15)  DEFAULT ('회원') NOT NULL,
+    [userId]        VARCHAR (50)  NOT NULL,
+    [pwd]           VARCHAR (100) NOT NULL,
+    [userName]      VARCHAR (50)  NOT NULL,
+    [nickName]      VARCHAR (50)  NOT NULL,
+    [tel]           VARCHAR (50)  NOT NULL,
+    [postcode]      VARCHAR (50)  NOT NULL,
+    [address]       VARCHAR (100) NOT NULL,
+    [detailAddress] VARCHAR (100) NULL,
+    [extraAddress]  VARCHAR (100) NULL,
+    [email]         VARCHAR (50)  NOT NULL,
+    [birth]         DATE          NOT NULL,
+    CONSTRAINT [PK_Members] PRIMARY KEY CLUSTERED ([memberId] ASC)
+);
+
+
+
+  SET IDENTITY_INSERT dbo.Members ON
+  insert into Members(memberId,role,userId,pwd,userName,nickName,tel,postcode,address,
+  detailAddress,extraAddress,email,birth)
+  values(1,'관리자','asd','asd','관리자','관리자입니다','01020893971','13280',
+  '태평동','7210','x' ,'jly789@naver.com','1995-04-01');
+
+   insert into Members(memberId,role,userId,pwd,userName,nickName,tel,postcode,address,
+  detailAddress,extraAddress,email,birth)
+  values(2,'회원','user1','user1','윤재일','비운의소나기','01012345678','13280',
+  '태평동','7210','x' ,'user1@naver.com','1990-01-01');
+
+  SET IDENTITY_INSERT dbo.Members OFF
+
+ select * from members;
+
+
+ CREATE TABLE [dbo].[Categorys] (
+    [categoryId]      INT  IDENTITY (1, 1) NOT NULL,
+    [categoryName]    VARCHAR (300) NOT NULL,
+  
+   CONSTRAINT [PK_categoryId] PRIMARY KEY CLUSTERED ([categoryId] ASC)
+  
+);
+
+
+
+SET IDENTITY_INSERT dbo.Categorys ON insert into Categorys(categoryId,categoryName) values(1,'아우터');
+SET IDENTITY_INSERT dbo.Categorys ON insert into Categorys(categoryId,categoryName) values(2,'니트');
+SET IDENTITY_INSERT dbo.Categorys ON insert into Categorys(categoryId,categoryName) values(3,'셔츠');
+SET IDENTITY_INSERT dbo.Categorys ON insert into Categorys(categoryId,categoryName) values(4,'바지');
+SET IDENTITY_INSERT dbo.Categorys ON insert into Categorys(categoryId,categoryName) values(5,'양말');
+SET IDENTITY_INSERT dbo.Categorys ON insert into Categorys(categoryId,categoryName) values(6,'가방');
+SET IDENTITY_INSERT dbo.Categorys ON insert into Categorys(categoryId,categoryName) values(7,'액세서리');
+
+
+
+  
+  SET IDENTITY_INSERT dbo.Categorys OFF
+
+
+   CREATE TABLE [dbo].[Subcategorys] (
+    [subCategoryId]      INT  IDENTITY (1, 1) NOT NULL,
+    [subCategoryName]    VARCHAR (300) NOT NULL,
+	[categoryId] INT NOT NULL,
+    CONSTRAINT [PK_subCategoryId] PRIMARY KEY CLUSTERED ([subCategoryId] ASC),
+    FOREIGN KEY ([categoryId]) REFERENCES [dbo].[Categorys] ([categoryId])
+  
+);
+
+SET IDENTITY_INSERT dbo.Subcategorys ON insert into Subcategorys(subCategoryId,subCategoryName,categoryId) values(1,'코트',1);
+SET IDENTITY_INSERT dbo.Subcategorys ON insert into Subcategorys(subCategoryId,subCategoryName,categoryId) values(2,'자켓',1);
+SET IDENTITY_INSERT dbo.Subcategorys ON insert into Subcategorys(subCategoryId,subCategoryName,categoryId) values(3,'수트',1);
+SET IDENTITY_INSERT dbo.Subcategorys ON insert into Subcategorys(subCategoryId,subCategoryName,categoryId) values(4,'패딩',1);
+SET IDENTITY_INSERT dbo.Subcategorys ON insert into Subcategorys(subCategoryId,subCategoryName,categoryId) values(5,'가죽',1);
+SET IDENTITY_INSERT dbo.Subcategorys ON insert into Subcategorys(subCategoryId,subCategoryName,categoryId) values(6,'바람막이',1);
+SET IDENTITY_INSERT dbo.Subcategorys ON insert into Subcategorys(subCategoryId,subCategoryName,categoryId) values(7,'야상',1);
+SET IDENTITY_INSERT dbo.Subcategorys ON insert into Subcategorys(subCategoryId,subCategoryName,categoryId) values(8,'긴팔니트',2);
+SET IDENTITY_INSERT dbo.Subcategorys ON insert into Subcategorys(subCategoryId,subCategoryName,categoryId) values(9,'반팔니트',2);
+SET IDENTITY_INSERT dbo.Subcategorys ON insert into Subcategorys(subCategoryId,subCategoryName,categoryId) values(10,'가디건',2);
+SET IDENTITY_INSERT dbo.Subcategorys ON insert into Subcategorys(subCategoryId,subCategoryName,categoryId) values(11,'폴라',2);
+SET IDENTITY_INSERT dbo.Subcategorys ON insert into Subcategorys(subCategoryId,subCategoryName,categoryId) values(12,'무지',3);
+SET IDENTITY_INSERT dbo.Subcategorys ON insert into Subcategorys(subCategoryId,subCategoryName,categoryId) values(13,'체크',3);
+SET IDENTITY_INSERT dbo.Subcategorys ON insert into Subcategorys(subCategoryId,subCategoryName,categoryId) values(14,'데님',3);
+SET IDENTITY_INSERT dbo.Subcategorys ON insert into Subcategorys(subCategoryId,subCategoryName,categoryId) values(15,'스트라이프',3);
+SET IDENTITY_INSERT dbo.Subcategorys ON insert into Subcategorys(subCategoryId,subCategoryName,categoryId) values(16,'데님',4);
+SET IDENTITY_INSERT dbo.Subcategorys ON insert into Subcategorys(subCategoryId,subCategoryName,categoryId) values(17,'슬랙스',4);
+SET IDENTITY_INSERT dbo.Subcategorys ON insert into Subcategorys(subCategoryId,subCategoryName,categoryId) values(18,'코튼',4);
+SET IDENTITY_INSERT dbo.Subcategorys ON insert into Subcategorys(subCategoryId,subCategoryName,categoryId) values(19,'반바지',4);
+SET IDENTITY_INSERT dbo.Subcategorys ON insert into Subcategorys(subCategoryId,subCategoryName,categoryId) values(20,'트레이닝',4);
+SET IDENTITY_INSERT dbo.Subcategorys ON insert into Subcategorys(subCategoryId,subCategoryName,categoryId) values(21,'양말',5);
+SET IDENTITY_INSERT dbo.Subcategorys ON insert into Subcategorys(subCategoryId,subCategoryName,categoryId) values(22,'가방',6);
+SET IDENTITY_INSERT dbo.Subcategorys ON insert into Subcategorys(subCategoryId,subCategoryName,categoryId) values(23,'액세서리',7);
+
+
+  SET IDENTITY_INSERT dbo.Subcategorys OFF
+
+
+
+
+
+CREATE TABLE [dbo].[Products] (
+    [productId]       INT  IDENTITY (1, 1) NOT NULL,
+	[productPrice]       INT            NOT NULL,
+	[productView]       INT            NOT NULL DEFAULT 0 ,
+    [productName]    VARCHAR (300) NOT NULL,
+	[productContent] VARCHAR (5000) NOT NULL,
+	[productImage]     VARCHAR(300) NOT NULL, --파일이미지이름
+    [productImagePath] VARCHAR(300) NOT NULL, --파일이미지경로
+    [memberId]       INT            NOT NULL,
+	[categoryId]     INT            NOT NULL,
+    PRIMARY KEY CLUSTERED (productId ASC),
+    FOREIGN KEY ([memberId]) REFERENCES [dbo].[Members] ([memberId]),
+	FOREIGN KEY ([categoryId]) REFERENCES [dbo].[Categorys] ([categoryId])
+);
+
+ 
+  SET IDENTITY_INSERT dbo.Products ON insert into Products(productId,productPrice,productView,productName,productContent,productImage,productImagePath,memberId,categoryId)
+  values(1,9000,0,'남성코트','남성코트입니다','코트.jpg','/img/코트.jpg',1,1);
+
+   SET IDENTITY_INSERT dbo.Products OFF
+
+  select * from Members;
+  select * from Categorys;
+  select * from Subcategorys;
+  select * from Products;

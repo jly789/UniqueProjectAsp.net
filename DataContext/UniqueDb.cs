@@ -1,8 +1,7 @@
 ﻿
-using Microsoft.AspNetCore.Hosting.Server;
 using Microsoft.EntityFrameworkCore;
-using Unique.Models.member;
-
+using Unique.Models;
+using Unique.Models.Member;
 namespace Unique.DataContext
 {
     public class UniqueDb : DbContext
@@ -14,6 +13,9 @@ namespace Unique.DataContext
 
 
         public DbSet<Member> Members { get; set; }
+        public DbSet<Category> Categorys { get; set; }
+        public DbSet<SubCategory> SubCategorys { get; set; }
+        public DbSet<Product> Products { get; set; }
 
 
 
