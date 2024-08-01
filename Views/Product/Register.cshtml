@@ -1,19 +1,16 @@
-﻿@{
-    Layout = "_Layout";
-}
-
-
-@model Unique.Models.Member.Member
-
+﻿@model Unique.Models.Member.Product
 
 @{
+    Layout = "_Layout";
 
 
-
-
-
+    
 
 }
+
+
+
+
 
 <style>
 
@@ -42,18 +39,74 @@
                     <div class="col-sm-10">
                         <h4 class="font-alt">상품 등록</h4>
                         <hr class="divider-w mb-10">
-                        <form class="form-horizontal" method="post" asp-controller="Product" asp-action="Register">
+                        <form class="form-horizontal" method="post" asp-controller="Product" asp-action="Register" 
+                        enctype="multipart/form-data">
+                            <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" asp-for="productName" placeholder="상품 이름" />
+                                <span class="text-danger" asp-validation-for="productName"></span>
+                             
+                            </div>
+
+                             <div class="form-group">
+                                <input type="text" class="form-control" asp-for="productPrice" placeholder="상품 가격" />
+                                <span class="text-danger" asp-validation-for="productPrice"></span>
+
+                            </div>
+
+                             <div class="form-group">
+                                <input type="text" class="form-control" asp-for="productContent" placeholder="상품 내용" />
+                                <span class="text-danger" asp-validation-for="productContent"></span>
+
+                            </div>
 
                         
-                            <div class="form-group">
-                                <input type="text" class="form-control" asp-for="pwd" placeholder="비밀번호 입력" />
-                                <span class="text-danger" asp-validation-for="pwd"></span>
+                            <div class="form-group"  style="text-align: left; background-size:10px;">
+                                <h6>카테고리 설정</h6>
+                                <select id="categoryParent">
+                                    <option value="선택" selected="selected">선택</option>
+                                    <option value="아우터">아우터</option>
+                                    <option value="니트">니트</option>
+                                    <option value="셔츠">셔츠</option>
+                                    <option value="바지">바지</option>
+                                    <option value="양말">양말</option>
+                                    <option value="가방">가방</option>
+                                    <option value="액세서리">액세서리</option>
+                               
+
+
+                                </select>
+
+                                <br></br>
+
+                              
+
+
+                                <select id="subCategory">
+
+                                    <option value="선택" selected="selected" id="accommodationCityOption">선택</option>
+
+
+
+                                </select>
+                           
+
 
                             </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control" asp-for="userName" placeholder="이름 입력" />
-                                <span class="text-danger" asp-validation-for="userName"></span>
+
+                             <div class="form-group">
+                                <input type="hidden" class="form-control" id="categoryId" asp-for="categoryId" placeholder="카테고리 설정"  />
+                                <span class="text-danger" asp-validation-for="categoryId"></span>
+
                             </div>
+
+                              <div class="form-group">
+                                <input type="file" class="form-control" name="file" id="file" placeholder="파일 설정" />
+                              
+
+                            </div>
+
+                       
                          
 
 
@@ -72,121 +125,84 @@
 
         <script>
 
+            $('#categoryParent').change(function () {
+              
+
+                $.ajax({
+
+                    type: 'POST',
+                    url: '/Product/CategoryCheck',
+                    data: 'categoryName=' + $('#categoryParent').val(),
+                    dataType: 'json',
+
+                    success: function (SubCategoryList) {
+
+                        if (SubCategoryList != null) {
+
+                            $('#subCategory').empty();
+                            for (var i = 0; i < SubCategoryList.length; i++) {
+                                var subCategoryDTO = SubCategoryList[i]
+
+
+                                var option = $('<option value="' + subCategoryDTO.subCategoryName + '">' + subCategoryDTO.subCategoryName + '</option>')
+
+                                $('#categoryId').val(subCategoryDTO.categoryId)
+
+                                $('#subCategory').append(option)
+                             
+
+                            }
+
+                            $('#subCategory').niceSelect('update')
+                       
+
+
+
+
+
+
+                        
+
+                  
+
+                          
+
+                            // $('#result').text('사용 가능한 아이디입니다.');
+                            // $('#checkId').val(1);
+
+                            // document.getElementById('result').style.color = "black";
+                        }
+
+                        else {
+
+                            // $('#result').text('이미 사용중인 아이디입니다.');
+                            // $('#checkId').val(1);
+                            // document.getElementById('result').style.color = "red";
+                        }
+
+                    },
+                    error: function (a, b, c) {
+                        console.log(a, b, c);
+                    }
+
+                });
+            
+            })
+
+
+
 
             $('#register').click(function () {
 
-                if ($('#checkId').val() != 1) {
-
-                    alert('중복확인을 누르세요.');
+                if ($('#file').val() == '') {
+                    alert('이미지 파일을 선택하세요!');
                     return false;
                 }
 
-                if ($('#result').text() == '이미 사용중인 아이디입니다.') {
-
-                    alert('이미사용중인 아이디');
-                    return false;
-                }
-
-
+                return true;
             });
 
 
-            $('#btnCheck').click(function () {
-
-                if ($('#userId').val() != '') {
-
-
-
-                    $.ajax({
-
-                        type: 'POST',
-                        url: '/Member/IdCheck',
-                        data: 'userId=' + $('#userId').val(),
-                        dataType: 'json',
-
-                        success: function (CheckuserId) {
-
-                            if (CheckuserId == null) {
-
-                                $('#result').text('사용 가능한 아이디입니다.');
-                                $('#checkId').val(1);
-
-                                document.getElementById('result').style.color = "black";
-                            }
-
-                            else {
-                                $('#result').text('이미 사용중인 아이디입니다.');
-                                $('#checkId').val(1);
-                                document.getElementById('result').style.color = "red";
-                            }
-
-                        },
-                        error: function (a, b, c) {
-                            console.log(a, b, c);
-                        }
-
-                    });
-
-                } else {
-                    alert('아이디를 입력하세요');
-                    $('#userId').focus();
-                }
-
-
-
-            });
-
-
-
-
-            function sample6_execDaumPostcode() {
-
-                new daum.Postcode({
-                    oncomplete: function (data) {
-                        // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-
-                        // 각 주소의 노출 규칙에 따라 주소를 조합한다.
-                        // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-                        var addr = ''; // 주소 변수
-                        var extraAddr = ''; // 참고항목 변수
-
-                        //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
-                        if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
-                            addr = data.roadAddress;
-                        } else { // 사용자가 지번 주소를 선택했을 경우(J)
-                            addr = data.jibunAddress;
-                        }
-
-                        // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
-                        if (data.userSelectedType === 'R') {
-                            // 법정동명이 있을 경우 추가한다. (법정리는 제외)
-                            // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
-                            if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
-                                extraAddr += data.bname;
-                            }
-                            // 건물명이 있고, 공동주택일 경우 추가한다.
-                            if (data.buildingName !== '' && data.apartment === 'Y') {
-                                extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-                            }
-                            // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
-                            if (extraAddr !== '') {
-                                extraAddr = ' (' + extraAddr + ')';
-                            }
-                            // 조합된 참고항목을 해당 필드에 넣는다.
-                            document.getElementById("sample6_extraAddress").value = extraAddr;
-
-                        } else {
-                            document.getElementById("sample6_extraAddress").value = '';
-                        }
-
-                        // 우편번호와 주소 정보를 해당 필드에 넣는다.
-                        document.getElementById('sample6_postcode').value = data.zonecode;
-                        document.getElementById("sample6_address").value = addr;
-                        // 커서를 상세주소 필드로 이동한다.
-                        document.getElementById("sample6_detailAddress").focus();
-                    }
-                }).open();
-            }
 
 
 
