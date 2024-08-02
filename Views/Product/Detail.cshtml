@@ -1,0 +1,107 @@
+﻿@{
+
+
+
+    String Pwd = ViewBag.Pwd;
+
+
+
+
+
+}
+
+<style>
+
+    .form-control {
+        text-transform: lowercase;
+    }
+
+</style>
+
+<div class="main">
+    <section class="module bg-dark-30" data-background="assets/images/section-4.jpg" style="background-color:gray;">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-sm-offset-3">
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+</div>
+
+
+<div class="main">
+
+    <section class="module-small">
+        <div class="container">
+            <form class="row">
+                <div class="col-sm-4 mb-sm-20">
+                    <select class="form-control">
+                        <option selected="selected">Default Sorting</option>
+                        <option>Popular</option>
+                        <option>Latest</option>
+                        <option>Average Price</option>
+                        <option>High Price</option>
+                        <option>Low Price</option>
+                    </select>
+                </div>
+                <div class="col-sm-2 mb-sm-20">
+                    <select class="form-control">
+                        <option selected="selected">Woman</option>
+                        <option>Man</option>
+                    </select>
+                </div>
+                <div class="col-sm-3 mb-sm-20">
+                    <select class="form-control">
+                        <option selected="selected">All</option>
+                        <option>Coats</option>
+                        <option>Jackets</option>
+                        <option>Dresses</option>
+                        <option>Jumpsuits</option>
+                        <option>Tops</option>
+                        <option>Trousers</option>
+                    </select>
+                </div>
+                <div class="col-sm-3">
+                    <button class="btn btn-block btn-round btn-g" type="submit">Apply</button>
+                </div>
+            </form>
+        </div>
+    </section>
+    <hr class="divider-w">
+    <section class="module-small">
+        <div class="container">
+            <div class="row multi-columns-row">
+
+
+         
+
+                    <div class="col-sm-6 col-md-3 col-lg-3">
+                        <div class="shop-item">
+
+                            <a href="/Product/Detail?productId=@Model.productId">
+                            <img src="~/images/upload/@Model.productImage"  alt="Accessories Pack"
+                                 style=" width:250px;  height:200px; " />
+                            </a>
+
+                        <h4 class="shop-item-title font-alt"><a href="/Product/Detail">@Model.productName</a></h4>@Model.productPrice 원
+
+                        </div>
+                    </div>
+
+             
+
+
+
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="pagination font-alt"><a href="#"><i class="fa fa-angle-left"></i></a><a class="active" href="#">1</a><a href="#">2</a><a href="#">3</a><a href="#">4</a><a href="#"><i class="fa fa-angle-right"></i></a></div>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+

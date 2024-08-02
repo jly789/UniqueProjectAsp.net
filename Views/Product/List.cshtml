@@ -1,0 +1,213 @@
+﻿
+
+
+@{
+
+
+
+    String Pwd = ViewBag.Pwd;
+
+
+
+
+
+}
+
+<style>
+
+    .form-control {
+        text-transform: lowercase;
+    }
+
+  
+/*     .image {
+      
+        height: 1500%;
+        background-size: auto;
+        display: inline-block;
+    }
+ */
+
+</style>
+
+<div class="main">
+    <section class="module bg-dark-30" data-background="assets/images/section-4.jpg" style="background-color:gray;">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-sm-offset-3">
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    </div>
+
+
+<div class="main">
+
+    <section class="module-small">
+        <div class="container">
+
+                
+
+                <form class="row" method="post" asp-controller="Product" asp-action="SortList">
+
+
+
+                    <div class="col-sm-4 mb-sm-20">
+                        <select class="form-control" name="price">
+
+             
+
+                            <option selected="selected">선택</option>
+
+                            <option value="highPrice">High Price</option>
+                            <option value="lowPrice">Low Price</option>
+
+                
+                        </select>
+                    </div>
+
+
+
+
+                <div class="col-sm-2 mb-sm-20">
+                    <select name="category" id="categoryParent" class= "form-control">
+                        <option selected="selected" value="all">All</option>
+
+                        <option value="아우터">아우터</option>
+                        <option value="니트">니트</option>
+                        <option value="셔츠">셔츠</option>
+                        <option value="바지">바지</option>
+                        <option value="양말">양말</option>
+                        <option value="가방">가방</option>
+                        <option value="액세서리">액세서리</option>
+
+
+                    </select>
+                    </div>
+
+                <div class="col-sm-3 mb-sm-20">
+                    <select name="subcategory" id="subCategory" class="form-control">
+
+                        <option value="선택" selected="selected" id="accommodationCityOption">선택</option>
+
+
+
+                    </select>
+                    </div>
+
+
+
+
+                <div class="col-sm-3">
+                    <button class="btn btn-block btn-round btn-g" type="submit">Apply</button>
+                </div>
+                </form>
+                </div>
+                </section>
+                <hr class="divider-w">
+                <section class="module-small">
+                    <div class="container">
+            <div class="row multi-columns-row">
+
+
+                @foreach (var product in Model)
+                {
+
+                    <div class="col-sm-6 col-md-3 col-lg-3">
+                    
+                        <a href="/Product/Detail?productId=@product.productId">
+                            <img src="~/images/upload/@product.productImage" alt="Accessories Pack" class="image"
+                                 style=" width:250px;  height:200px; " />
+                            </a>
+                       
+                            <h4 class="shop-item-title font-alt"><a href="/Product/Detail">@product.productName</a></h4>@product.productPrice 원
+                        
+                    </div>
+            
+
+             }
+
+
+
+              
+              
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="pagination font-alt"><a href="#"><i class="fa fa-angle-left"></i></a><a class="active" href="#">1</a><a href="#">2</a><a href="#">3</a><a href="#">4</a><a href="#"><i class="fa fa-angle-right"></i></a></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+     @section scripts {
+
+     
+
+        <script>
+
+
+
+
+            $('#categoryParent').change(function () {
+
+                if ($('#categoryParent').val() == 'all') {
+                    $('#subCategory').empty();
+                 
+                return false;
+            }
+                    
+
+                $.ajax({
+
+                    type: 'POST',
+                    url: '/Product/CategoryCheck',
+                    data: 'categoryName=' + $('#categoryParent').val(),
+                    dataType: 'json',
+
+                    success: function (SubCategoryList) {
+
+                        if (SubCategoryList != null) {
+
+                            $('#subCategory').empty();
+                            for (var i = 0; i < SubCategoryList.length; i++) {
+                                var subCategoryDTO = SubCategoryList[i]
+
+
+                                var option = $('<option value="' + subCategoryDTO.subCategoryName + '">' + subCategoryDTO.subCategoryName + '</option>')
+
+                                $('#categoryId').val(subCategoryDTO.categoryId)
+
+                                $('#subCategory').append(option)
+
+
+                            }
+
+                            $('#subCategory').niceSelect('update')
+
+
+
+                        }
+
+                        else {
+
+
+                        }
+
+                    },
+                    error: function (a, b, c) {
+                        console.log(a, b, c);
+                    }
+
+                });
+
+            })
+
+
+      
+    </script>
+
+    }

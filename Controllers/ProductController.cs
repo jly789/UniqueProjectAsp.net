@@ -1,5 +1,7 @@
 ﻿
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.IO;
 using Unique.DataContext;
 using Unique.Models;
 using Unique.Models.Member;
@@ -21,10 +23,7 @@ namespace Unique.Controllers
         // GET: ProductController
         public ActionResult Index()
         {
-         
-          
-
-            
+        
 
             return View();
         }
@@ -43,16 +42,23 @@ namespace Unique.Controllers
             {
          
 
-            var path = Path.Combine(_environment.WebRootPath, @"images\upload");
+          
 
 
             var fileFullName = file.FileName.Split('.');
             var fileName = $"{Guid.NewGuid()}.{fileFullName[1]}";
 
+            var path = Path.Combine(_environment.WebRootPath, @"images\upload");
+         
+
             using (var fileStream = new FileStream(Path.Combine(path, fileName), FileMode.Create))
             {
+                path = Path.Combine(_environment.WebRootPath, @"images\upload" + fileName);
+
                 await file.CopyToAsync(fileStream);
             }
+
+            Console.WriteLine(path);
 
             model.memberId = 1;
             model.productImage = fileName;
@@ -96,6 +102,76 @@ namespace Unique.Controllers
 
         }
 
+        [HttpGet]
+        public ActionResult Detail(int productId)
+        {
+
+            using (var db = new UniqueDb())
+            {
+
+                var list = db.Products.FirstOrDefault(p=>p.productId.Equals(productId));
+                return View(list);
+            }
+         
+                
+           
+
+
+               
+
+        }
+
+        [HttpGet]
+        public ActionResult List()
+        {
+
+            using (var db = new UniqueDb())
+            {
+             //   students = students.OrderByDescending(s => s.LastName);
+
+                var list = db.Products.OrderByDescending(p => p.productId).ToList();
+             
+                return View(list);
+            }
+
+
+
+
+        }
+
+        [HttpPost]
+        public ActionResult SortList(String price)
+        {
+
+           
+
+            Console.WriteLine(price);
+
+
+            using (var db = new UniqueDb())
+            {
+               
+
+                var list = db.Products.OrderByDescending(p => p.productId).ToList();
+
+                return View(list);
+            }
+
+
+
+
+        }
+
+
+        [HttpGet]
+        public ActionResult Update()
+        {
+
+
+
+            return View();
+
+        }
 
 
 

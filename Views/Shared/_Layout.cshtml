@@ -78,20 +78,20 @@
                         <a class="dropdown-toggle" href="/" data-toggle="dropdown">Home</a>
                         <ul class="dropdown-menu">
                          
-                                @if (Context.Session.GetInt32("memberId") == null)
-                                {
+                             @*    @if (Context.Session.GetInt32("memberId") == null)
+                                { *@
                                     <li><a href="/Member/Login">로그인</a></li>
                                     <li><a href="/Member/Register">회원가입</a></li>
-                                }
+                               @*  }
 
                                 else
-                                {
+                                { *@
                                     <li><a href="/Member/Logout">로그아웃</a></li>
-                                
-                                }
+                             @*    
+                                } *@
                             </ul>
                     </li>
-                                }
+                              @*   } *@
 
 
 
@@ -99,16 +99,13 @@
                      
                     
 
-                                @if (Context.Session.GetInt32("memberId") == 1){
+                              @*   @if (Context.Session.GetInt32("memberId") == 1){ *@
                     <li class="dropdown">
                         <a class="dropdown-toggle" href="/Product/Register" data-toggle="dropdown">상품등록</a>
                         <ul class="dropdown-menu">
                             <li class="dropdown">
-                                <a class="dropdown-toggle" href="#" data-toggle="dropdown">Static Image Header</a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="index_mp_fullscreen_static.html">Fulscreen</a></li>
-                                    <li><a href="index_mp_classic_static.html">Classic</a></li>
-                                </ul>
+                                <a class="dropdown-toggle" href="/Product/List" data-toggle="dropdown">상품수정</a>
+                            
                             </li>
                             <li class="dropdown">
                                 <a class="dropdown-toggle" href="#" data-toggle="dropdown">Flexslider Header</a>
@@ -117,31 +114,11 @@
                                     <li><a href="index_mp_classic_flexslider.html">Classic</a></li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a class="dropdown-toggle" href="#" data-toggle="dropdown">Video Background Header</a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="index_mp_fullscreen_video_background.html">Fulscreen</a></li>
-                                    <li><a href="index_mp_classic_video_background.html">Classic</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a class="dropdown-toggle" href="#" data-toggle="dropdown">Text Rotator Header</a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="index_mp_fullscreen_text_rotator.html">Fulscreen</a></li>
-                                    <li><a href="index_mp_classic_text_rotator.html">Classic</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a class="dropdown-toggle" href="#" data-toggle="dropdown">Gradient Overlay Header</a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="index_mp_fullscreen_gradient_overlay.html">Fulscreen</a></li>
-                                    <li><a href="index_mp_classic_gradient_overlay.html">Classic</a></li>
-                                </ul>
-                            </li>
+                         
                         </ul>
                     </li>
 
-                        }
+                    @*     } *@
                     <li class="dropdown">
                         <a class="dropdown-toggle" href="#" data-toggle="dropdown">Pages</a>
                         <ul class="dropdown-menu">
