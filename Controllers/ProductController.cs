@@ -1,10 +1,12 @@
 ﻿
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.IO;
 using Unique.DataContext;
 using Unique.Models;
 using Unique.Models.Member;
+using System.Linq;
 using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
 
 namespace Unique.Controllers
@@ -23,7 +25,7 @@ namespace Unique.Controllers
         // GET: ProductController
         public ActionResult Index()
         {
-        
+
 
             return View();
         }
@@ -31,25 +33,25 @@ namespace Unique.Controllers
         [HttpGet]
         public ActionResult Register()
         {
-          
+
 
             return View();
 
         }
 
-            [HttpPost]
-            public async Task<IActionResult> Register(Product model, IFormFile file)
-            {
-         
+        [HttpPost]
+        public async Task<IActionResult> Register(Product model, IFormFile file)
+        {
 
-          
+
+
 
 
             var fileFullName = file.FileName.Split('.');
             var fileName = $"{Guid.NewGuid()}.{fileFullName[1]}";
 
             var path = Path.Combine(_environment.WebRootPath, @"images\upload");
-         
+
 
             using (var fileStream = new FileStream(Path.Combine(path, fileName), FileMode.Create))
             {
@@ -78,11 +80,11 @@ namespace Unique.Controllers
 
             }
 
-                return View(model);
+            return View(model);
         }
 
 
-       
+
         [HttpPost]
         public ActionResult CategoryCheck(String categoryName)
         {
@@ -95,7 +97,7 @@ namespace Unique.Controllers
 
                 var SubCategoryList = db.SubCategorys.Where(s => s.categoryId.Equals(CheckCategoryId.categoryId)).ToList();
 
-            
+
 
                 return Json(SubCategoryList);
             }
@@ -109,15 +111,15 @@ namespace Unique.Controllers
             using (var db = new UniqueDb())
             {
 
-                var list = db.Products.FirstOrDefault(p=>p.productId.Equals(productId));
+                var list = db.Products.FirstOrDefault(p => p.productId.Equals(productId));
                 return View(list);
             }
-         
-                
-           
 
 
-               
+
+
+
+
 
         }
 
@@ -127,10 +129,10 @@ namespace Unique.Controllers
 
             using (var db = new UniqueDb())
             {
-             //   students = students.OrderByDescending(s => s.LastName);
+                //   students = students.OrderByDescending(s => s.LastName);
 
                 var list = db.Products.OrderByDescending(p => p.productId).ToList();
-             
+
                 return View(list);
             }
 
@@ -140,17 +142,140 @@ namespace Unique.Controllers
         }
 
         [HttpPost]
-        public ActionResult SortList(String price)
+        public ActionResult SortList(String price, String category, String subcategory)
         {
 
-           
+            if (price == "ALL" && category == "ALL")
+            {
+                using (var db = new UniqueDb())
+                {
 
-            Console.WriteLine(price);
+                    ViewBag.price = price;
+                    ViewBag.category = category;
+                    ViewBag.subcategory = subcategory;
+
+                    var list = db.Products.OrderBy(p => p.productId).ToList();
+
+                  
+
+                    return View(list);
+                }
+
+            }
+
+            if (price == "highPrice" && category == "ALL")
+            {
+
+
+
+                using (var db = new UniqueDb())
+                {
+
+                    ViewBag.price = price;
+                    ViewBag.category = category;
+                    ViewBag.subcategory = subcategory;
+
+                    var list = db.Products.OrderByDescending(p => p.productPrice).ToList();
+
+
+                    return View(list);
+                }
+
+
+            }
+            if (price == "lowPrice" && category == "ALL")
+            {
+
+
+
+                using (var db = new UniqueDb())
+                {
+                    ViewBag.price = price;
+                    ViewBag.category = category;
+                    ViewBag.subcategory = subcategory;
+                    var list = db.Products.OrderBy(p => p.productPrice).ToList();
+
+                    return View(list);
+                }
+
+
+            }
+
+
+            if (price == "highPrice" && category != "ALL")
+            {
+
+
+
+                using (var db = new UniqueDb())
+                {
+
+                    ViewBag.price = price;
+                    ViewBag.category = category;
+                    ViewBag.subcategory = subcategory;
+
+                    var  list = db.Products.Where(p =>  p.productCategoryName.Equals(subcategory)).OrderByDescending(p=>p.productPrice).ToList();
+
+                    return View(list);
+                }
+
+
+            }
+            if (price == "lowPrice" && category != "ALL")
+            {
+
+
+
+                using (var db = new UniqueDb())
+                {
+                    ViewBag.price = price;
+                    ViewBag.category = category;
+                    ViewBag.subcategory = subcategory;
+
+                    var list = db.Products.Where(p => p.productCategoryName.Equals(subcategory)).OrderBy(p => p.productPrice).ToList();
+
+                    return View(list);
+                }
+
+
+            }
+
+
+
+            if (price == "ALL" && category != "ALL")
+            {
+
+
+
+                using (var db = new UniqueDb())
+                {
+                    ViewBag.price = price;
+                    ViewBag.category = category;
+                    ViewBag.subcategory = subcategory;
+
+                    var list = db.Products.Where(p => p.productCategoryName.Equals(subcategory)).ToList();
+
+                    return View(list);
+                }
+
+
+            }
+
+
+
+            
+
+
+
+
+
 
 
             using (var db = new UniqueDb())
             {
-               
+                ViewBag.price = price;
+                ViewBag.category = category;
+                ViewBag.subcategory = subcategory;
 
                 var list = db.Products.OrderByDescending(p => p.productId).ToList();
 

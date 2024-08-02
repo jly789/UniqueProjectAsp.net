@@ -16,7 +16,7 @@
 <style>
 
     .form-control {
-        text-transform: lowercase;
+        text-transform: uppercase;
     }
 
   
@@ -58,9 +58,9 @@
                     <div class="col-sm-4 mb-sm-20">
                         <select class="form-control" name="price">
 
-             
 
-                            <option selected="selected">선택</option>
+
+                        <option selected="selected" value="ALL">ALL</option>
 
                             <option value="highPrice">High Price</option>
                             <option value="lowPrice">Low Price</option>
@@ -73,8 +73,8 @@
 
 
                 <div class="col-sm-2 mb-sm-20">
-                    <select name="category" id="categoryParent" class= "form-control">
-                        <option selected="selected" value="all">All</option>
+                    <select name="category" id="categoryParent"  class= "form-control">
+                        <option selected="selected" value="ALL">ALL</option>
 
                         <option value="아우터">아우터</option>
                         <option value="니트">니트</option>
@@ -89,7 +89,7 @@
                     </div>
 
                 <div class="col-sm-3 mb-sm-20">
-                    <select name="subcategory" id="subCategory" class="form-control">
+                    <select name="subcategory"  id="subCategory" class="form-control">
 
                         <option value="선택" selected="selected" id="accommodationCityOption">선택</option>
 
@@ -154,7 +154,7 @@
 
             $('#categoryParent').change(function () {
 
-                if ($('#categoryParent').val() == 'all') {
+                if ($('#categoryParent').val() == 'ALL') {
                     $('#subCategory').empty();
                  
                 return false;

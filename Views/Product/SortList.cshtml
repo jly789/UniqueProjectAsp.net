@@ -2,9 +2,11 @@
 
 
 
-    String Pwd = ViewBag.Pwd;
+    String price = ViewBag.price;
+    String category = ViewBag.category;
+    String subcategory = ViewBag.subcategory;
 
-
+ 
 
 
 
@@ -13,7 +15,7 @@
 <style>
 
     .form-control {
-        text-transform: lowercase;
+        text-transform: uppercase;
     }
 
 
@@ -55,14 +57,32 @@
                 <div class="col-sm-4 mb-sm-20">
                     <select class="form-control" name="price">
 
-
-
-                        <option selected="selected">선택</option>
-
-                        <option value="highPrice">High Price</option>
+                        @if (@price == "highPrice")
+                        {
+                        <option selected value="highPrice">High Price</option>
+                 
                         <option value="lowPrice">Low Price</option>
+                            <option value="ALL">ALL</option>
+                        }
 
+                        @if (@price == "lowPrice")
+                        {
+                        <option selected value="lowPrice">Low Price</option>
+                       
+                        <option value="highPrice">High Price</option>
+                            <option value="ALL">ALL</option>
+                     
 
+                        }
+                          @if (@price =="ALL")
+                        {
+                            <option selected="selected" value="ALL">ALL</option>
+                            <option value="highPrice">High Price</option>
+                            <option value="lowPrice">Low Price</option>
+                        
+
+                           
+                        }
                     </select>
                 </div>
 
@@ -71,15 +91,36 @@
 
                 <div class="col-sm-2 mb-sm-20">
                     <select name="category" id="categoryParent" class="form-control">
-                        <option selected="selected" value="all">All</option>
 
-                        <option value="아우터">아우터</option>
-                        <option value="니트">니트</option>
-                        <option value="셔츠">셔츠</option>
-                        <option value="바지">바지</option>
-                        <option value="양말">양말</option>
-                        <option value="가방">가방</option>
-                        <option value="액세서리">액세서리</option>
+                        @if( @category !="ALL")
+                        {
+                            <option selected disabled value="@category">@category</option>
+                            <option value="ALL">ALL</option>
+                            <option value="아우터">아우터</option>
+                            <option value="니트">니트</option>
+                            <option value="셔츠">셔츠</option>
+                            <option value="바지">바지</option>
+                            <option value="양말">양말</option>
+                            <option value="가방">가방</option>
+                            <option value="액세서리">액세서리</option>
+                           
+
+                        }
+                        @if (@category == "ALL")
+                        {
+
+                            <option selected="selected" value="ALL">ALL</option>
+
+                            <option value="아우터">아우터</option>
+                            <option value="니트">니트</option>
+                            <option value="셔츠">셔츠</option>
+                            <option value="바지">바지</option>
+                            <option value="양말">양말</option>
+                            <option value="가방">가방</option>
+                            <option value="액세서리">액세서리</option>
+
+
+                        }
 
 
                     </select>
@@ -88,10 +129,18 @@
                 <div class="col-sm-3 mb-sm-20">
                     <select name="subcategory" id="subCategory" class="form-control">
 
-                        <option value="선택" selected="selected" id="accommodationCityOption">선택</option>
+                         @if( @subcategory =="선택" && subcategory =="")
+                        {
+                            <option value="선택" selected="selected" id="accommodationCityOption" value="ALL">ALL</option>
 
-
-
+                       
+                        }
+                        @if (@subcategory != "선택" && subcategory != "")
+                        {
+                         <option value="@subcategory" selected="selected" disabled id="accommodationCityOption">@subcategory</option>
+                    
+                      
+                        }
                     </select>
                 </div>
 
@@ -151,7 +200,7 @@
 
             $('#categoryParent').change(function () {
 
-                if ($('#categoryParent').val() == 'all') {
+                if ($('#categoryParent').val() == 'ALL') {
                     $('#subCategory').empty();
 
                     return false;
@@ -173,6 +222,8 @@
                             for (var i = 0; i < SubCategoryList.length; i++) {
                                 var subCategoryDTO = SubCategoryList[i]
 
+
+                          
 
                                 var option = $('<option value="' + subCategoryDTO.subCategoryName + '">' + subCategoryDTO.subCategoryName + '</option>')
 
