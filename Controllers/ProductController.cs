@@ -40,7 +40,7 @@ namespace Unique.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Register(Product model, IFormFile file)
+        public async Task<IActionResult> Register(Product model, IFormFile  file)
         {
 
 
@@ -111,14 +111,25 @@ namespace Unique.Controllers
             using (var db = new UniqueDb())
             {
 
-                var list = db.Products.FirstOrDefault(p => p.productId.Equals(productId));
+              //  var list = db.Products.FirstOrDefault(p => p.productId.Equals(productId));
+
+                 var list = db.Products.FirstOrDefault(p => p.productId.Equals(productId));
+
+                var listImg = db.ProductImgs.Where(p => p.productId.Equals(productId)).ToList();
+
+                ViewBag.ProductImgList = listImg;
+
+                foreach (var item in listImg)
+                {
+                    Console.WriteLine(item.productImgId);
+                }
                 return View(list);
             }
 
 
 
 
-
+           // var list = db.Products.Where(p => p.productCategoryName.Equals(subcategory)).OrderByDescending(p => p.productPrice).ToList();
 
 
         }

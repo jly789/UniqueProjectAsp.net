@@ -14,6 +14,8 @@ namespace Unique.Models.Member
 
         public String? productName { get; set; }
         public String? productContent { get; set; }
+        public String? productBrand { get; set; }
+      
         public String? productImage { get; set; }
         public String? productImagePath { get; set; }
         public String? productCategoryName { get; set; }

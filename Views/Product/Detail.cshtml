@@ -2,10 +2,7 @@
 
 
 
-    String Pwd = ViewBag.Pwd;
-
-
-
+    List<ProductImg> ProductImgList = ViewBag.ProductImgList;
 
 
 }
@@ -30,78 +27,349 @@
     </section>
 
 </div>
-
-
 <div class="main">
-
-    <section class="module-small">
+    <section class="module">
         <div class="container">
-            <form class="row">
-                <div class="col-sm-4 mb-sm-20">
-                    <select class="form-control">
-                        <option selected="selected">Default Sorting</option>
-                        <option>Popular</option>
-                        <option>Latest</option>
-                        <option>Average Price</option>
-                        <option>High Price</option>
-                        <option>Low Price</option>
-                    </select>
+            <div class="row">
+                <div class="col-sm-6 mb-sm-40">
+                    <a class="gallery">
+                        <img src="/images/upload/@Model.productImage" alt="Single Product Image"
+                             style=" width:467px;  height:550px; " />
+                    </a>
+
+                    @if (@ProductImgList != null)
+                    {
+
+                        <ul class="product-gallery">
+
+                            @foreach (var list in ProductImgList)
+                            {
+                                <li>
+                                    <a class="gallery"></a><img src="/images/upload/@list.productImage" alt="Single Product"
+                                                                style=" width:200px;  height:100px; " />
+                                </li>
+
+                            }
+
+                        </ul>
+
+                    }
                 </div>
-                <div class="col-sm-2 mb-sm-20">
-                    <select class="form-control">
-                        <option selected="selected">Woman</option>
-                        <option>Man</option>
-                    </select>
-                </div>
-                <div class="col-sm-3 mb-sm-20">
-                    <select class="form-control">
-                        <option selected="selected">All</option>
-                        <option>Coats</option>
-                        <option>Jackets</option>
-                        <option>Dresses</option>
-                        <option>Jumpsuits</option>
-                        <option>Tops</option>
-                        <option>Trousers</option>
-                    </select>
-                </div>
-                <div class="col-sm-3">
-                    <button class="btn btn-block btn-round btn-g" type="submit">Apply</button>
-                </div>
-            </form>
-        </div>
-    </section>
-    <hr class="divider-w">
-    <section class="module-small">
-        <div class="container">
-            <div class="row multi-columns-row">
-
-
-         
-
-                    <div class="col-sm-6 col-md-3 col-lg-3">
-                        <div class="shop-item">
-
-                            <a href="/Product/Detail?productId=@Model.productId">
-                            <img src="~/images/upload/@Model.productImage"  alt="Accessories Pack"
-                                 style=" width:250px;  height:200px; " />
-                            </a>
-
-                        <h4 class="shop-item-title font-alt"><a href="/Product/Detail">@Model.productName</a></h4>@Model.productPrice 원
-
+                <div class="col-sm-6">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h1 class="product-title font-alt">@Model.productName</h1>
                         </div>
                     </div>
-
-             
-
-
-
-
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="pagination font-alt"><a href="#"><i class="fa fa-angle-left"></i></a><a class="active" href="#">1</a><a href="#">2</a><a href="#">3</a><a href="#">4</a><a href="#"><i class="fa fa-angle-right"></i></a></div>
+                    <div class="row mb-20">
+                        <div class="col-sm-12">
+                            <span><i class="fa fa-star star"></i></span><span><i class="fa fa-star star"></i></span><span><i class="fa fa-star star"></i></span><span><i class="fa fa-star star"></i></span><span><i class="fa fa-star star-off"></i></span><a class="open-tab section-scroll" href="#reviews">-2customer reviews</a>
+                        </div>
+                    </div>
+                    <div class="row mb-20">
+                        <div class="col-sm-12">
+                            <div class="price font-alt"><span class="amount">@Model.productPrice 원</span></div>
+                        </div>
+                    </div>
+                    <div class="row mb-20">
+                        <div class="col-sm-12">
+                            <div class="description">
+                                <p>@Model.productContent</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-20">
+                        <div class="col-sm-4 mb-sm-20">
+                            <input class="form-control input-lg" type="number" name="" value="1" max="40" min="1" required="required" />
+                        </div>
+                        <div class="col-sm-8"><a class="btn btn-lg btn-block btn-round btn-b" href="#">Add To Cart</a></div>
+                    </div>
+                    <div class="row mb-20">
+                        <div class="col-sm-12">
+                            <div class="product_meta">
+                                Categories:<a href="#"> @Model.productCategoryName </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+            <div class="row mt-70">
+                <div class="col-sm-12">
+                    <ul class="nav nav-tabs font-alt" role="tablist">
+                        <li class="active"><a href="#description" data-toggle="tab"><span class="icon-tools-2"></span>Description</a></li>
+                        <li><a href="#data-sheet" data-toggle="tab"><span class="icon-tools-2"></span>Data sheet</a></li>
+                        <li><a href="#reviews" data-toggle="tab"><span class="icon-tools-2"></span>Reviews (2)</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="description">
+                            <p>@Model.productContent</p>
+                        </div>
+                        <div class="tab-pane" id="data-sheet">
+                            <table class="table table-striped ds-table table-responsive">
+                                <tbody>
+                                    <tr>
+                                        <th>Title</th>
+                                        <th>Info</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Categories</td>
+                                        <td>@Model.productCategoryName</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Size</td>
+                                        <td>44, 46, 48</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Brand</td>
+                                        <td>@Model.productBrand</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="tab-pane" id="reviews">
+                            <div class="comments reviews">
+                                <div class="comment clearfix">
+                                    <div class="comment-avatar"><img src="" alt="avatar" /></div>
+                                    <div class="comment-content clearfix">
+                                        <div class="comment-author font-alt"><a href="#">John Doe</a></div>
+                                        <div class="comment-body">
+                                            <p>The European languages are members of the same family. Their separate existence is a myth. For science, music, sport, etc, Europe uses the same vocabulary. The European languages are members of the same family. Their separate existence is a myth.</p>
+                                        </div>
+                                        <div class="comment-meta font-alt">
+                                            Today, 14:55 -<span><i class="fa fa-star star"></i></span><span><i class="fa fa-star star"></i></span><span><i class="fa fa-star star"></i></span><span><i class="fa fa-star star"></i></span><span><i class="fa fa-star star-off"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="comment clearfix">
+                                    <div class="comment-avatar"><img src="" alt="avatar" /></div>
+                                    <div class="comment-content clearfix">
+                                        <div class="comment-author font-alt"><a href="#">Mark Stone</a></div>
+                                        <div class="comment-body">
+                                            <p>Europe uses the same vocabulary. The European languages are members of the same family. Their separate existence is a myth.</p>
+                                        </div>
+                                        <div class="comment-meta font-alt">
+                                            Today, 14:59 -<span><i class="fa fa-star star"></i></span><span><i class="fa fa-star star"></i></span><span><i class="fa fa-star star"></i></span><span><i class="fa fa-star star-off"></i></span><span><i class="fa fa-star star-off"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="comment-form mt-30">
+                                <h4 class="comment-form-title font-alt">Add review</h4>
+                                <form method="post">
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label class="sr-only" for="name">Name</label>
+                                                <input class="form-control" id="name" type="text" name="name" placeholder="Name" />
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label class="sr-only" for="email">Name</label>
+                                                <input class="form-control" id="email" type="text" name="email" placeholder="E-mail" />
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <select class="form-control">
+                                                    <option selected="true" disabled="">Rating</option>
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                    <option value="5">5</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <textarea class="form-control" id="" name="" rows="4" placeholder="Review"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <button class="btn btn-round btn-d" type="submit">Submit Review</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
 
+    <hr class="divider-w">
+    <section class="module-small">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-10 col-sm-offset-1">
+                    <p class="module-title font-alt" style="font-size:15px;">
+
+
+                        @if (@ProductImgList != null)
+                        {
+
+                            @foreach (var list in ProductImgList)
+                            {
+
+                                <img src="/images/upload/@list.productImage" alt="Single Product Image"
+                                     style=" width:1600px;  height:750px; margin-left:-50px; " />
+                                <br />
+
+                                <br />  <br />
+
+                                <br />
+
+
+
+                            }
+                        }
+
+                        <img src="/images/upload/사이즈.jpg" alt="Single Product"
+                             style=" width:1500px;  height:800px; margin-left:-50px; " />
+
+                        <br /><br />
+
+
+
+                        <img src="/images/upload/디테일사진1.jpg" alt="Single Product"
+                             style=" width:1500px;  height:800px; margin-left:30px; " />
+
+                        <br /><br />
+
+                        <img src="/images/upload/디테일사진2.jpg" alt="Single Product"
+                             style=" width:1500px;  height:800px; margin-left:30px; " />
+
+                        <br /><br />
+
+
+                </div>
+            </div>
+            <div class="row multi-columns-row">
+                <div class="col-sm-6 col-md-3 col-lg-3">
+                    <div class="shop-item">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <hr class="divider-w">
+    <section class="module-small">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-sm-offset-3">
+                    <h2 class="module-title font-alt">Related Products</h2>
+                </div>
+            </div>
+            <div class="row multi-columns-row">
+                <div class="col-sm-6 col-md-3 col-lg-3">
+                    <div class="shop-item">
+                        <div class="shop-item-image">
+                            <img src="assets/images/shop/product-11.jpg" alt="Accessories Pack" />
+                            <div class="shop-item-detail"><a class="btn btn-round btn-b"><span class="icon-basket">Add To Cart</span></a></div>
+                        </div>
+                        <h4 class="shop-item-title font-alt"><a href="#">Accessories Pack</a></h4>£9.00
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-3 col-lg-3">
+                    <div class="shop-item">
+                        <div class="shop-item-image">
+                            <img src="assets/images/shop/product-12.jpg" alt="Men’s Casual Pack" />
+                            <div class="shop-item-detail"><a class="btn btn-round btn-b"><span class="icon-basket">Add To Cart</span></a></div>
+                        </div>
+                        <h4 class="shop-item-title font-alt"><a href="#">Men’s Casual Pack</a></h4>£12.00
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-3 col-lg-3">
+                    <div class="shop-item">
+                        <div class="shop-item-image">
+                            <img src="assets/images/shop/product-13.jpg" alt="Men’s Garb" />
+                            <div class="shop-item-detail"><a class="btn btn-round btn-b"><span class="icon-basket">Add To Cart</span></a></div>
+                        </div>
+                        <h4 class="shop-item-title font-alt"><a href="#">Men’s Garb</a></h4>£6.00
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-3 col-lg-3">
+                    <div class="shop-item">
+                        <div class="shop-item-image">
+                            <img src="assets/images/shop/product-14.jpg" alt="Cold Garb" />
+                            <div class="shop-item-detail"><a class="btn btn-round btn-b"><span class="icon-basket">Add To Cart</span></a></div>
+                        </div>
+                        <h4 class="shop-item-title font-alt"><a href="#">Cold Garb</a></h4>£14.00
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <hr class="divider-w">
+    <section class="module">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-sm-offset-3">
+                    <h2 class="module-title font-alt">Exclusive products</h2>
+                    <div class="module-subtitle font-serif">The languages only differ in their grammar, their pronunciation and their most common words.</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="owl-carousel text-center" data-items="5" data-pagination="false" data-navigation="false">
+                    <div class="owl-item">
+                        <div class="col-sm-12">
+                            <div class="ex-product">
+                                <a href="#"><img src="assets/images/shop/product-1.jpg" alt="Leather belt" /></a>
+                                <h4 class="shop-item-title font-alt"><a href="#">Leather belt</a></h4>£12.00
+                            </div>
+                        </div>
+                    </div>
+                    <div class="owl-item">
+                        <div class="col-sm-12">
+                            <div class="ex-product">
+                                <a href="#"><img src="assets/images/shop/product-3.jpg" alt="Derby shoes" /></a>
+                                <h4 class="shop-item-title font-alt"><a href="#">Derby shoes</a></h4>£54.00
+                            </div>
+                        </div>
+                    </div>
+                    <div class="owl-item">
+                        <div class="col-sm-12">
+                            <div class="ex-product">
+                                <a href="#"><img src="assets/images/shop/product-2.jpg" alt="Leather belt" /></a>
+                                <h4 class="shop-item-title font-alt"><a href="#">Leather belt</a></h4>£19.00
+                            </div>
+                        </div>
+                    </div>
+                    <div class="owl-item">
+                        <div class="col-sm-12">
+                            <div class="ex-product">
+                                <a href="#"><img src="assets/images/shop/product-4.jpg" alt="Leather belt" /></a>
+                                <h4 class="shop-item-title font-alt"><a href="#">Leather belt</a></h4>£14.00
+                            </div>
+                        </div>
+                    </div>
+                    <div class="owl-item">
+                        <div class="col-sm-12">
+                            <div class="ex-product">
+                                <a href="#"><img src="assets/images/shop/product-5.jpg" alt="Chelsea boots" /></a>
+                                <h4 class="shop-item-title font-alt"><a href="#">Chelsea boots</a></h4>£44.00
+                            </div>
+                        </div>
+                    </div>
+                    <div class="owl-item">
+                        <div class="col-sm-12">
+                            <div class="ex-product">
+                                <a href="#"><img src="assets/images/shop/product-6.jpg" alt="Leather belt" /></a>
+                                <h4 class="shop-item-title font-alt"><a href="#">Leather belt</a></h4>£19.00
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+    </main>

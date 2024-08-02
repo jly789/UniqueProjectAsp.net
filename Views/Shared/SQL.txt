@@ -1,5 +1,4 @@
 ﻿
-
 drop table Members;
 drop table Categorys;
 drop table SubCategorys;
@@ -109,12 +108,14 @@ CREATE TABLE [dbo].[Products] (
     [productId]       INT  IDENTITY (1, 1) NOT NULL,
 	[productPrice]       INT            NOT NULL,
 	[productView]       INT            NOT NULL DEFAULT 0 ,
-    [productName]    VARCHAR (300) NOT NULL,
+    [productName]    VARCHAR (100) NOT NULL,
 	[productContent] VARCHAR (5000) NOT NULL,
 	[productImage]     VARCHAR(300) NOT NULL, --파일이미지이름
     [productImagePath] VARCHAR(300) NOT NULL, --파일이미지경로
+	[productCategoryName] VARCHAR (100) NOT NULL,
     [memberId]       INT            NOT NULL,
 	[categoryId]     INT            NOT NULL,
+	
     PRIMARY KEY CLUSTERED (productId ASC),
     FOREIGN KEY ([memberId]) REFERENCES [dbo].[Members] ([memberId]),
 	FOREIGN KEY ([categoryId]) REFERENCES [dbo].[Categorys] ([categoryId])
@@ -130,3 +131,10 @@ CREATE TABLE [dbo].[Products] (
   select * from Categorys;
   select * from Subcategorys;
   select * from Products;
+
+  select * from Products
+  order by productId asc;
+
+  select * from Products
+  where productCategoryName='코트'
+  order by productPrice desc;
