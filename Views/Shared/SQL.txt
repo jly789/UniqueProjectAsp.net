@@ -1,8 +1,14 @@
 ﻿
-drop table Members;
-drop table Categorys;
-drop table SubCategorys;
+
+drop table Carts;
+drop table ProductImgs;
 drop table Products;
+drop table SubCategorys;
+drop table Categorys;
+drop table Members;
+
+
+
 
 
 CREATE TABLE [dbo].[Members] (
@@ -54,7 +60,7 @@ SET IDENTITY_INSERT dbo.Categorys ON insert into Categorys(categoryId,categoryNa
 SET IDENTITY_INSERT dbo.Categorys ON insert into Categorys(categoryId,categoryName) values(2,'니트');
 SET IDENTITY_INSERT dbo.Categorys ON insert into Categorys(categoryId,categoryName) values(3,'셔츠');
 SET IDENTITY_INSERT dbo.Categorys ON insert into Categorys(categoryId,categoryName) values(4,'바지');
-SET IDENTITY_INSERT dbo.Categorys ON insert into Categorys(categoryId,categoryName) values(5,'양말');
+SET IDENTITY_INSERT dbo.Categorys ON insert into Categorys(categoryId,categoryName) values(5,'신발');
 SET IDENTITY_INSERT dbo.Categorys ON insert into Categorys(categoryId,categoryName) values(6,'가방');
 SET IDENTITY_INSERT dbo.Categorys ON insert into Categorys(categoryId,categoryName) values(7,'액세서리');
 
@@ -93,7 +99,7 @@ SET IDENTITY_INSERT dbo.Subcategorys ON insert into Subcategorys(subCategoryId,s
 SET IDENTITY_INSERT dbo.Subcategorys ON insert into Subcategorys(subCategoryId,subCategoryName,categoryId) values(18,'코튼',4);
 SET IDENTITY_INSERT dbo.Subcategorys ON insert into Subcategorys(subCategoryId,subCategoryName,categoryId) values(19,'반바지',4);
 SET IDENTITY_INSERT dbo.Subcategorys ON insert into Subcategorys(subCategoryId,subCategoryName,categoryId) values(20,'트레이닝',4);
-SET IDENTITY_INSERT dbo.Subcategorys ON insert into Subcategorys(subCategoryId,subCategoryName,categoryId) values(21,'양말',5);
+SET IDENTITY_INSERT dbo.Subcategorys ON insert into Subcategorys(subCategoryId,subCategoryName,categoryId) values(21,'신발',5);
 SET IDENTITY_INSERT dbo.Subcategorys ON insert into Subcategorys(subCategoryId,subCategoryName,categoryId) values(22,'가방',6);
 SET IDENTITY_INSERT dbo.Subcategorys ON insert into Subcategorys(subCategoryId,subCategoryName,categoryId) values(23,'액세서리',7);
 
@@ -110,6 +116,7 @@ CREATE TABLE [dbo].[Products] (
 	[productView]       INT            NOT NULL DEFAULT 0 ,
     [productName]    VARCHAR (100) NOT NULL,
 	[productContent] VARCHAR (5000) NOT NULL,
+	[productBrand]   VARCHAR (100) NOT NULL,
 	[productImage]     VARCHAR(300) NOT NULL, --파일이미지이름
     [productImagePath] VARCHAR(300) NOT NULL, --파일이미지경로
 	[productCategoryName] VARCHAR (100) NOT NULL,
@@ -122,15 +129,123 @@ CREATE TABLE [dbo].[Products] (
 );
 
  
-  SET IDENTITY_INSERT dbo.Products ON insert into Products(productId,productPrice,productView,productName,productContent,productImage,productImagePath,memberId,categoryId)
-  values(1,9000,0,'남성코트','남성코트입니다','코트.jpg','/img/코트.jpg',1,1);
+  SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+    productCategoryName,memberId,categoryId)
+  values(1,150000,0,'1','아우터-코트','샤넬','코트-1-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload코트-1-1.jpg','코트',1,1);
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+    productCategoryName,memberId,categoryId)
+  values(2,120000,0,'2','아우터-코트','구찌','코트-2-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload코트-2-1.jpg','코트',1,1);
+      SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+    productCategoryName,memberId,categoryId)
+  values(3,270000,0,'3','아우터-코트','나이키','코트-3-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload코트-3-1.jpg','코트',1,1);
+      SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+    productCategoryName,memberId,categoryId)
+  values(4,55000,0,'4','아우터-코트','아디다스','코트-4-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload코트-4-1.jpg','코트',1,1);
+      SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+    productCategoryName,memberId,categoryId)
+  values(5,30000,0,'5','아우터-코트','ABC마트','코트-5-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload코트-5-1.jpg','코트',1,1);
+        SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+    productCategoryName,memberId,categoryId)
+  values(6,20000,0,'6','아우터-코트','ABC마트','코트-6-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload코트-6-1.jpg','코트',1,1);
+        SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+    productCategoryName,memberId,categoryId)
+  values(7,130000,0,'7','아우터-코트','ABC마트','코트-7-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload코트-7-1.jpg','코트',1,1);
+        SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+    productCategoryName,memberId,categoryId)
+  values(8,330000,0,'8','아우터-코트','ABC마트','코트-8-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload코트-8-1.jpg','코트',1,1);
 
    SET IDENTITY_INSERT dbo.Products OFF
+
+   CREATE TABLE [dbo].[ProductImgs] (
+    [productImgId]       INT  IDENTITY (1, 1) NOT NULL,
+	[productImage]     VARCHAR(300) NOT NULL, --파일이미지이름
+    [productImagePath] VARCHAR(300) NOT NULL, --파일이미지경로
+	[productId]     INT            NOT NULL,
+	
+    PRIMARY KEY CLUSTERED (productImgId ASC),
+	FOREIGN KEY ([productId]) REFERENCES [dbo].[Products] ([productId])
+);
+
+  SET IDENTITY_INSERT dbo.ProductImgs ON insert into ProductImgs
+  (productImgId,productImage,productImagePath,productId)
+  values(1,'코트-1-1.jpg','C:\Users\jly78\source\repos\Unique\wwwroot\images\upload코트-1-1.jpg',1);
+    SET IDENTITY_INSERT dbo.ProductImgs ON insert into ProductImgs
+  (productImgId,productImage,productImagePath,productId)
+  values(2,'코트-1-2.jpg','C:\Users\jly78\source\repos\Unique\wwwroot\images\upload코트-1-2.jpg',1);
+    SET IDENTITY_INSERT dbo.ProductImgs ON insert into ProductImgs
+  (productImgId,productImage,productImagePath,productId)
+  values(3,'코트-1-3.jpg','C:\Users\jly78\source\repos\Unique\wwwroot\images\upload코트-1-3.jpg',1);
+    SET IDENTITY_INSERT dbo.ProductImgs ON insert into ProductImgs
+  (productImgId,productImage,productImagePath,productId)
+  values(4,'코트-1-4.jpg','C:\Users\jly78\source\repos\Unique\wwwroot\images\upload코트-1-4.jpg',1);
+    SET IDENTITY_INSERT dbo.ProductImgs ON insert into ProductImgs
+  (productImgId,productImage,productImagePath,productId)
+  values(5,'코트-1-5.jpg','C:\Users\jly78\source\repos\Unique\wwwroot\images\upload코트-1-5.jpg',1);
+
+  SET IDENTITY_INSERT dbo.ProductImgs ON insert into ProductImgs
+  (productImgId,productImage,productImagePath,productId)
+  values(6,'코트-2-1.jpg','C:\Users\jly78\source\repos\Unique\wwwroot\images\upload코트-2-1.jpg',2);
+  SET IDENTITY_INSERT dbo.ProductImgs ON insert into ProductImgs
+  (productImgId,productImage,productImagePath,productId)
+  values(7,'코트-3-1.jpg','C:\Users\jly78\source\repos\Unique\wwwroot\images\upload코트-3-1.jpg',3);
+  SET IDENTITY_INSERT dbo.ProductImgs ON insert into ProductImgs
+  (productImgId,productImage,productImagePath,productId)
+  values(8,'코트-4-1.jpg','C:\Users\jly78\source\repos\Unique\wwwroot\images\upload코트-4-1.jpg',4);
+  SET IDENTITY_INSERT dbo.ProductImgs ON insert into ProductImgs
+  (productImgId,productImage,productImagePath,productId)
+  values(9,'코트-5-1.jpg','C:\Users\jly78\source\repos\Unique\wwwroot\images\upload코트-5-1.jpg',5);
+  SET IDENTITY_INSERT dbo.ProductImgs ON insert into ProductImgs
+  (productImgId,productImage,productImagePath,productId)
+  values(10,'코트-6-1.jpg','C:\Users\jly78\source\repos\Unique\wwwroot\images\upload코트-6-1.jpg',6);
+  SET IDENTITY_INSERT dbo.ProductImgs ON insert into ProductImgs
+  (productImgId,productImage,productImagePath,productId)
+  values(11,'코트-7-1.jpg','C:\Users\jly78\source\repos\Unique\wwwroot\images\upload코트-7-1.jpg',7);
+  SET IDENTITY_INSERT dbo.ProductImgs ON insert into ProductImgs
+  (productImgId,productImage,productImagePath,productId)
+  values(12,'코트-8-1.jpg','C:\Users\jly78\source\repos\Unique\wwwroot\images\upload코트-8-1.jpg',8);
+
+  SET IDENTITY_INSERT dbo.ProductImgs OFF
+
+    CREATE TABLE [dbo].[Carts] (
+    [cartId]      INT  IDENTITY (1, 1) NOT NULL,
+    [quantity]     INT NOT NULL,
+	[price]  INT NOT NULL,
+	[memberId] INT NOT NULL,
+	[productId] INT NOT NULL,
+    CONSTRAINT [PK_cartId] PRIMARY KEY CLUSTERED ([cartId] ASC),
+	 FOREIGN KEY ([memberId]) REFERENCES [dbo].[Members] ([memberId]),
+    FOREIGN KEY ([productId]) REFERENCES [dbo].[Products] ([productId])
+  
+);
+
+
+SET IDENTITY_INSERT dbo.Carts ON insert into Carts(cartId,quantity,price,memberId,productId) values(1,1,150000,2,1);
+ 
+SET IDENTITY_INSERT dbo.Carts OFF
+
 
   select * from Members;
   select * from Categorys;
   select * from Subcategorys;
   select * from Products;
+  select * from ProductImgs;
+  select * from Carts;
 
   select * from Products
   order by productId asc;

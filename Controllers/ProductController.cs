@@ -8,6 +8,7 @@ using Unique.Models;
 using Unique.Models.Member;
 using System.Linq;
 using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace Unique.Controllers
 {
@@ -40,7 +41,7 @@ namespace Unique.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Register(Product model, IFormFile  file)
+        public async Task<IActionResult> Register(Product model, IFormFile file)
         {
 
 
@@ -111,25 +112,22 @@ namespace Unique.Controllers
             using (var db = new UniqueDb())
             {
 
-              //  var list = db.Products.FirstOrDefault(p => p.productId.Equals(productId));
 
-                 var list = db.Products.FirstOrDefault(p => p.productId.Equals(productId));
+
+                var list = db.Products.FirstOrDefault(p => p.productId.Equals(productId));
 
                 var listImg = db.ProductImgs.Where(p => p.productId.Equals(productId)).ToList();
 
                 ViewBag.ProductImgList = listImg;
 
-                foreach (var item in listImg)
-                {
-                    Console.WriteLine(item.productImgId);
-                }
+
                 return View(list);
             }
 
 
 
 
-           // var list = db.Products.Where(p => p.productCategoryName.Equals(subcategory)).OrderByDescending(p => p.productPrice).ToList();
+            // var list = db.Products.Where(p => p.productCategoryName.Equals(subcategory)).OrderByDescending(p => p.productPrice).ToList();
 
 
         }
@@ -167,7 +165,7 @@ namespace Unique.Controllers
 
                     var list = db.Products.OrderBy(p => p.productId).ToList();
 
-                  
+
 
                     return View(list);
                 }
@@ -225,7 +223,7 @@ namespace Unique.Controllers
                     ViewBag.category = category;
                     ViewBag.subcategory = subcategory;
 
-                    var  list = db.Products.Where(p =>  p.productCategoryName.Equals(subcategory)).OrderByDescending(p=>p.productPrice).ToList();
+                    var list = db.Products.Where(p => p.productCategoryName.Equals(subcategory)).OrderByDescending(p => p.productPrice).ToList();
 
                     return View(list);
                 }
@@ -274,7 +272,7 @@ namespace Unique.Controllers
 
 
 
-            
+
 
 
 
@@ -300,17 +298,82 @@ namespace Unique.Controllers
 
 
         [HttpGet]
-        public ActionResult Update()
+        public ActionResult Update(int productId)
         {
 
+            using (var db = new UniqueDb())
+            {
+
+                //  var list = db.Products.FirstOrDefault(p => p.productId.Equals(productId));
+
+                var list = db.Products.FirstOrDefault(p => p.productId.Equals(productId));
+
+                var listImg = db.ProductImgs.Where(p => p.productId.Equals(productId)).ToList();
+
+                ViewBag.ProductImgList = listImg;
+
+                foreach (var item in listImg)
+                {
+
+                }
+                return View(list);
+            }
 
 
-            return View();
+
+
+        }
+
+        [HttpPost]
+        public ActionResult Update(Product Model)
+        {
+
+            Console.WriteLine(Model.productName);
+            Console.WriteLine(Model.productId);
+            Console.WriteLine(Model.productPrice);
+            Console.WriteLine(Model.productContent);
+
+            using (var db = new UniqueDb())
+            {
+
+
+
+                db.Update(Model);
+                db.SaveChanges();
+                return RedirectToAction("List", "Product");
+
+            }
+
+
+
 
         }
 
 
 
+        public ActionResult Delete(Product Model)
+        {
 
+            using (var db = new UniqueDb())
+            {
+                var productImgId = db.ProductImgs.Where(p => p.productId.Equals(Model.productId)).ToList();
+
+
+                db.RemoveRange(productImgId);
+                db.SaveChanges();
+
+                db.Products.Remove(Model);
+                db.SaveChanges();
+                return RedirectToAction("List", "Product");
+            }
+
+
+
+        }
     }
+
+
+
+
+
 }

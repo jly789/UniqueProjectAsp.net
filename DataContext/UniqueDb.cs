@@ -17,6 +17,7 @@ namespace Unique.DataContext
         public DbSet<SubCategory> SubCategorys { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductImg> ProductImgs { get; set; }
+        public DbSet<Cart> Carts { get; set; }
 
 
 

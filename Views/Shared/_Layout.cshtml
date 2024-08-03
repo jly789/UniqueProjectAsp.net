@@ -78,20 +78,20 @@
                         <a class="dropdown-toggle" href="/" data-toggle="dropdown">Home</a>
                         <ul class="dropdown-menu">
                          
-                             @*    @if (Context.Session.GetInt32("memberId") == null)
-                                { *@
+                                @if (Context.Session.GetInt32("memberId") == null)
+                                { 
                                     <li><a href="/Member/Login">로그인</a></li>
                                     <li><a href="/Member/Register">회원가입</a></li>
-                               @*  }
+                                 }
 
                                 else
-                                { *@
+                                { 
                                     <li><a href="/Member/Logout">로그아웃</a></li>
-                             @*    
-                                } *@
+                               
+                                } 
                             </ul>
                     </li>
-                              @*   } *@
+                               } 
 
 
 
@@ -99,7 +99,7 @@
                      
                     
 
-                              @*   @if (Context.Session.GetInt32("memberId") == 1){ *@
+                                 @if (Context.Session.GetInt32("memberId") == 1){ 
                     <li class="dropdown">
                         <a class="dropdown-toggle" href="/Product/Register" data-toggle="dropdown">상품등록</a>
                         <ul class="dropdown-menu">
@@ -118,7 +118,7 @@
                         </ul>
                     </li>
 
-                    @*     } *@
+                        } 
 
 
                         <li class="dropdown">
@@ -130,9 +130,9 @@
                             </ul>
                         </li>
 
-
+                          @if (Context.Session.GetInt32("memberId") != null){ 
                     <li class="dropdown">
-                        <a class="dropdown-toggle" href="#" data-toggle="dropdown">Portfolio</a>
+                        <a class="dropdown-toggle" href="/Cart/List" data-toggle="dropdown">Cart</a>
                         <ul class="dropdown-menu" role="menu">
                             <li class="dropdown">
                                 <a class="dropdown-toggle" href="#" data-toggle="dropdown">Boxed</a>
@@ -142,86 +142,13 @@
                                     <li><a href="portfolio_boxed_col_4.html">4 Columns</a></li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a class="dropdown-toggle" href="#" data-toggle="dropdown">Boxed - Gutter</a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="portfolio_boxed_gutter_col_2.html">2 Columns</a></li>
-                                    <li><a href="portfolio_boxed_gutter_col_3.html">3 Columns</a></li>
-                                    <li><a href="portfolio_boxed_gutter_col_4.html">4 Columns</a></li>
+                       
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a class="dropdown-toggle" href="#" data-toggle="dropdown">Full Width</a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="portfolio_full_width_col_2.html">2 Columns</a></li>
-                                    <li><a href="portfolio_full_width_col_3.html">3 Columns</a></li>
-                                    <li><a href="portfolio_full_width_col_4.html">4 Columns</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a class="dropdown-toggle" href="#" data-toggle="dropdown">Full Width - Gutter</a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="portfolio_full_width_gutter_col_2.html">2 Columns</a></li>
-                                    <li><a href="portfolio_full_width_gutter_col_3.html">3 Columns</a></li>
-                                    <li><a href="portfolio_full_width_gutter_col_4.html">4 Columns</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a class="dropdown-toggle" href="#" data-toggle="dropdown">Masonry</a>
-                                <ul class="dropdown-menu">
-                                    <li class="dropdown">
-                                        <a class="dropdown-toggle" href="#" data-toggle="dropdown">Boxed</a>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="portfolio_masonry_boxed_col_2.html">2 Columns</a></li>
-                                            <li><a href="portfolio_masonry_boxed_col_3.html">3 Columns</a></li>
-                                            <li><a href="portfolio_masonry_boxed_col_4.html">4 Columns</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown">
-                                        <a class="dropdown-toggle" href="#" data-toggle="dropdown">Full Width</a>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="portfolio_masonry_full_width_col_2.html">2 Columns</a></li>
-                                            <li><a href="portfolio_masonry_full_width_col_3.html">3 Columns</a></li>
-                                            <li><a href="portfolio_masonry_full_width_col_4.html">4 Columns</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a class="dropdown-toggle" href="#" data-toggle="dropdown">Hover Style</a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="portfolio_hover_black.html">Black</a></li>
-                                    <li><a href="portfolio_hover_gradient.html">Gradient</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a class="dropdown-toggle" href="#" data-toggle="dropdown">Single</a>
-                                <ul class="dropdown-menu">
-                                    <li class="dropdown">
-                                        <a class="dropdown-toggle" href="#" data-toggle="dropdown">Featured Image</a>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="portfolio_single_featured_image1.html">Style 1</a></li>
-                                            <li><a href="portfolio_single_featured_image2.html">Style 2</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown">
-                                        <a class="dropdown-toggle" href="#" data-toggle="dropdown">Featured Slider</a>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="portfolio_single_featured_slider1.html">Style 1</a></li>
-                                            <li><a href="portfolio_single_featured_slider2.html">Style 2</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown">
-                                        <a class="dropdown-toggle" href="#" data-toggle="dropdown">Featured Video</a>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="portfolio_single_featured_video1.html">Style 1</a></li>
-                                            <li><a href="portfolio_single_featured_video2.html">Style 2</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
+                        }
+
+
+                           
                     <li class="dropdown">
                         <a class="dropdown-toggle" href="#" data-toggle="dropdown">Blog</a>
                         <ul class="dropdown-menu" role="menu">
