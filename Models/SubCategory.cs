@@ -16,7 +16,7 @@ namespace Unique.Models
   
         public int categoryId { get; set; }
 
-        [ForeignKey("categoryId")]
+       [ForeignKey("categoryId")]
         public virtual Category? Category { get; set; }
        
 

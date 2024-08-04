@@ -1,7 +1,6 @@
 ﻿
 using Microsoft.EntityFrameworkCore;
 using Unique.Models;
-using Unique.Models.Member;
 namespace Unique.DataContext
 {
     public class UniqueDb : DbContext

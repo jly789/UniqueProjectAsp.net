@@ -5,7 +5,7 @@ using System.Data.Entity;
 using System.IO;
 using Unique.DataContext;
 using Unique.Models;
-using Unique.Models.Member;
+
 using System.Linq;
 using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
@@ -138,6 +138,15 @@ namespace Unique.Controllers
 
             using (var db = new UniqueDb())
             {
+
+                var aa = db.Products.AsNoTracking().Include(p => p.Member).ToList();
+
+                foreach (var p in aa)
+                {
+                    Console.WriteLine(p.Member?.userName);
+                }
+
+
                 //   students = students.OrderByDescending(s => s.LastName);
 
                 var list = db.Products.OrderByDescending(p => p.productId).ToList();

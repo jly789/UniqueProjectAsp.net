@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 
 
-namespace Unique.Models.Member
+namespace Unique.Models
 
 {
     public class Cart
@@ -13,6 +13,8 @@ namespace Unique.Models.Member
         public int cartId { get; set; }
         public int quantity { get; set; }
         public int price { get; set; }
+
+        public int totalPrice { get; set; }
 
         public int memberId { get; set; }
 
@@ -25,6 +27,6 @@ namespace Unique.Models.Member
 
 
         [ForeignKey("productId")]
-        public virtual Product? Product { get; set; }
+        public  Product? Product { get; set; }
     }
 }

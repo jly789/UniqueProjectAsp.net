@@ -1,5 +1,10 @@
-﻿@{
+﻿
+@{
     Layout = "_Layout";
+
+ 
+
+
 }
 
 <div class="main">
@@ -29,46 +34,45 @@
                 <div class="col-sm-12">
                     <table class="table table-striped table-border checkout-table">
                         <tbody>
+
+                         
+
                             <tr>
                                 <th class="hidden-xs">Item</th>
-                                <th>Description</th>
+                                <th>상품명</th>
                                 <th class="hidden-xs">Price</th>
                                 <th>Quantity</th>
                                 <th>Total</th>
                                 <th>Remove</th>
                             </tr>
-                            <tr>
-                                <td class="hidden-xs"><a href="#"><img src="assets/images/shop/product-14.jpg" alt="Accessories Pack" /></a></td>
-                                <td>
-                                    <h5 class="product-title font-alt">Accessories Pack</h5>
-                                </td>
-                                <td class="hidden-xs">
-                                    <h5 class="product-title font-alt">£20.00</h5>
-                                </td>
-                                <td>
-                                    <input class="form-control" type="number" name="" value="1" max="50" min="1" />
-                                </td>
-                                <td>
-                                    <h5 class="product-title font-alt">£20.00</h5>
-                                </td>
-                                <td class="pr-remove"><a href="#" title="Remove"><i class="fa fa-times"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td class="hidden-xs"><a href="#"><img src="assets/images/shop/product-13.jpg" alt="Men’s Casual Pack" /></a></td>
-                                <td>
-                                    <h5 class="product-title font-alt">Men’s Casual Pack</h5>
-                                </td>
-                                <td class="hidden-xs">
-                                    <h5 class="product-title font-alt">£20.00</h5>
-                                </td>
-                                <td>
-                                    <input class="form-control" type="number" name="" value="1" max="50" min="1" />
-                                </td>
-                                <td>
-                                    <h5 class="product-title font-alt">토탈: @Model.price</h5>
-                                </td>
-                                <td class="pr-remove"><a href="#" title="Remove"><i class="fa fa-times"></i></a></td>
-                            </tr>
+
+
+
+
+                            @foreach (var cart in Model)
+                            {
+                                <tr>
+                                    <td class="hidden-xs"><a href="#"><img src="~/images/upload/@cart.productImage" alt="Accessories Pack" /></a></td>
+                                    <td>
+                                        <h5 class="product-title font-alt">@cart.memberId</h5>
+                                    </td>
+                                    <td class="hidden-xs">
+                                        <h5 class="product-title font-alt" id="price">@cart.price</h5>
+                                    </td>
+                                    <td>
+                                        <input class="form-control" type="number" name="quantity" id="quantity" value="@cart.quantity" max="10" min="1" />
+                                    </td>
+
+
+
+                                    <td>
+                                        <h5 class="product-title font-alt" id="totalPrice">@cart.totalPrice 원</h5>
+                                    </td>
+
+                                    <td class="pr-remove"><a href="#" title="Remove"><i class="fa fa-times"></i></a></td>
+                                </tr>
+                            }
+
                         </tbody>
                     </table>
                 </div>
@@ -117,3 +121,13 @@
             </div>
         </div>
     </section>
+
+    @section scripts{
+
+        <script>
+
+ 
+
+
+        </script>
+    }
