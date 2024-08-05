@@ -1,3 +1,87 @@
-﻿@{
-    Layout = "_Layout";
+﻿@model Unique.Models.Member
+
+@{
+    var birth = Model.birth?.ToString("yyyy-MM-dd");
 }
+
+<div class="main">
+    <section class="module bg-dark-30" data-background="assets/images/section-4.jpg" style="background-color:gray;">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-sm-offset-3">
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+</div>
+
+<section class="module">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-5 col-sm-offset-1 mb-sm-40" >
+              
+                
+            </div>
+            <div class="col-sm-5" style="margin-left:-220px;">
+                <h4 class="font-alt" >MY PAGE</h4>
+                <hr class="divider-w mb-10">
+                <form class="form" method="post" asp-controller="Member" asp-action="Update" >
+                    <div class="form-group">
+                         <input class="form-control" type="hidden" name="memberId" value="@Model.memberId" placeholder="memberId" readonly />
+                    </div>
+                    <div class="form-group">
+                        <strong>Id</strong>    <input class="form-control" type="text" name="userId" value="@Model.userId" placeholder="Id" readonly />
+                    </div>
+                    <div class="form-group">
+                        <strong>userName</strong>
+                        <input class="form-control" type="text" name="userName" value="@Model.userName" placeholder="userName" readonly />
+                    </div>
+                    <div class="form-group">
+                        <strong>password</strong>
+                        <input class="form-control" type="text" name="pwd" value="@Model.pwd" placeholder="name" readonly />
+                    </div>
+                    <div class="form-group">
+                        <strong>nickName</strong>
+                        <input class="form-control" type="text" name="nickName" value="@Model.nickName" placeholder="nickName" readonly />
+                    </div>
+
+                    <div class="form-group">
+                        <strong>tel</strong>
+                        <input class="form-control" type="tel" name="tel" value="@Model.tel" placeholder="tel" readonly />
+                    </div>
+                    <div class="form-group">
+                        <strong>postcode</strong>
+                        <input class="form-control" type="text" name="postcode" value="@Model.postcode" placeholder="postcode" readonly />
+                    </div>
+                    <div class="form-group">
+                        <strong>address</strong>
+                        <input class="form-control" type="text" name="address" value="@Model.address" placeholder="address" readonly />
+                    </div>
+                    <div class="form-group">
+                        <strong>detailAddress</strong>
+                        <input class="form-control" type="text" name="detailAddress" value="@Model.detailAddress" placeholder="detailAddress" readonly />
+                    </div>
+                    <div class="form-group">
+                        <strong>extraAddress</strong>
+                        <input class="form-control" type="text" name="extraAddress" value="@Model.extraAddress" placeholder="extraAddress" readonly />
+                    </div>
+                    <div class="form-group">
+                        <strong>email</strong>
+                        <input class="form-control" type="text" name="email" value="@Model.email" placeholder="email" readonly />
+                    </div>
+                    <div class="form-group">
+                        <strong>birth</strong>
+                        <input class="form-control" type="text" name="birth" value="@birth" placeholder="birth" readonly />
+                    </div>
+
+
+                    <div class="form-group">
+                        <button class="btn btn-block btn-round btn-b">UPDATE</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
