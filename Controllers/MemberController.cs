@@ -11,10 +11,10 @@ namespace Unique.Controllers
     public class MemberController : Controller
     {
         // GET: MemberController
-        public ActionResult Index()
+        public ActionResult Mypage()
         {
           
-            Console.WriteLine("asdas");
+           
 
             return View();
         }

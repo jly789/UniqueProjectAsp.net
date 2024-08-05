@@ -1,9 +1,8 @@
-﻿
-@{
+﻿@{
     Layout = "_Layout";
 
- 
-    int cartTotalPrice =  ViewBag.CartTotalPrice;
+
+    // int cartTotalPrice = ViewBag.CartTotalPrice;
 
 }
 
@@ -26,18 +25,18 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-6 col-sm-offset-3">
-                    <h1 class="module-title font-alt">Cart</h1>
+                    <h1 class="module-title font-alt">MY ORDER</h1>
                 </div>
             </div>
             <hr class="divider-w pt-20">
             <div class="row">
                 <div class="col-sm-12">
                     <table class="table table-striped table-border checkout-table">
-                        <tbody >
+                        <tbody>
 
-                         
 
-                            <tr >
+
+                            <tr>
                                 <th class="hidden-xs">Item</th>
                                 <th>ProductName</th>
                                 <th class="hidden-xs">Price</th>
@@ -49,33 +48,33 @@
 
 
 
-                            @foreach (var cart in Model)
+                            @foreach (var order in Model)
                             {
-                              
+
                                 <tr style="text-align:center;">
-                                    <td class="hidden-xs"><a href="#"><img src="~/images/upload/@cart.productImage" alt="Accessories Pack" /></a></td>
+                                    <td class="hidden-xs"><a href="#"><img src="~/images/upload/@order.productImage" alt="Accessories Pack" /></a></td>
                                     <td>
                                         <br></br>
-                                        <h5 class="product-title font-alt">@cart.productName</h5>
+                                        <h5 class="product-title font-alt">@order.productName</h5>
                                     </td>
                                     <td class="hidden-xs">
                                         <br></br>
-                                        <h5 class="product-title font-alt" id="price">@cart.price 원</h5>
+                                        <h5 class="product-title font-alt" id="price">@order.price</h5>
                                     </td>
                                     <td>
                                         <br></br>
-                                        <input type="hidden" name="quantity" id="quantity" value="@cart.quantity" disabled style="background-color:white;" />
-                                        <p>@cart.quantity</p>
+                                        <input type="hidden" name="quantity" id="quantity" value="@order.orderQuantity" disabled style="background-color:white;" />
+                                        <p>@order.orderQuantity</p>
                                     </td>
 
 
 
                                     <td>
                                         <br></br>
-                                        <h5 class="product-title font-alt" id="totalPrice">@cart.totalPrice 원</h5>
+                                        <h5 class="product-title font-alt" id="totalPrice">@order.totalPrice 원</h5>
                                     </td>
 
-                                    <td class="pr-remove"> <br></br><a href="/Cart/CartDelete?cartId=@cart.cartId" title="Remove"><i class="fa fa-times"></i></a></td>
+                                    <td class="pr-remove"> <br></br><a href="/Order/OrderDelete?orderId= @order.orderId" title="Remove"><i class="fa fa-times"></i></a></td>
                                 </tr>
                             }
 
@@ -91,12 +90,11 @@
                 </div>
                 <div class="col-sm-3">
                     <div class="form-group">
-                    
                     </div>
                 </div>
                 <div class="col-sm-3 col-sm-offset-3">
                     <div class="form-group">
-                    @*     <button class="btn btn-block btn-round btn-d pull-right" type="submit">Update Cart</button> *@
+                        @*     <button class="btn btn-block btn-round btn-d pull-right" type="submit">Update Cart</button> *@
                     </div>
                 </div>
             </div>
@@ -104,32 +102,18 @@
             <div class="row mt-70">
                 <div class="col-sm-5 col-sm-offset-7">
                     <div class="shop-Cart-totalbox">
-                        <h4 class="font-alt">Cart Totals</h4>
-                        <table class="table table-striped table-border checkout-table">
-                            <tbody>
-                             
-                                <tr class="shop-Cart-totalprice">
-                       
-                                    <th>Total </th>
-                                    <td id="totalPrice">@cartTotalPrice 원</td>
-                                    <input type="hidden" name="orderPrice" value="@cartTotalPrice" />
-                                </tr>
-                            </tbody>
-                        </table>
-                           <form method="get" asp-controller="Order" asp-action="Order">
-                        <button class="btn btn-lg btn-block btn-round btn-d" type="submit">Order</button>
-                        </form>
+                    
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    @section scripts{
+    @section scripts {
 
         <script>
 
-            
+
 
 
         </script>

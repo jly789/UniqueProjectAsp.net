@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using Unique.DataContext;
 using Unique.Models;
 
 namespace Unique.Controllers
@@ -15,6 +16,10 @@ namespace Unique.Controllers
 
         public IActionResult Index()
         {
+            HttpContext.Session.SetInt32("memberId", 2);
+
+          
+
             return View();
         }
 

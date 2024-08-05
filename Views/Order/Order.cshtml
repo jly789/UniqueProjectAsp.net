@@ -1,0 +1,223 @@
+﻿
+
+@{
+    Layout = "_Layout";
+
+
+    int cartTotalPrice = ViewBag.CartTotalPrice;
+
+}
+
+
+    <div class="main">
+        <section class="module bg-dark-30" data-background="assets/images/section-4.jpg" style="background-color:gray;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6 col-sm-offset-3">
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+
+
+    <div class="main">
+        <section class="module">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6 col-sm-offset-3">
+                        <h1 class="module-title font-alt">Order</h1>
+                    </div>
+                </div>
+                <hr class="divider-w pt-20">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <table class="table table-striped table-border checkout-table">
+                            <tbody>
+
+
+
+                                <tr>
+                                    <th class="hidden-xs">Item</th>
+                                    <th>ProductName</th>
+                                    <th class="hidden-xs">Price</th>
+                                    <th>Quantity</th>
+                                    <th>Total</th>
+
+                                </tr>
+
+
+
+
+                                @foreach (var cart in Model)
+                                {
+                                
+                                    <tr style="text-align:center;">
+                                        <td class="hidden-xs"><a href="#"><img src="~/images/upload/@cart.productImage" alt="Accessories Pack" /></a></td>
+                                        <td>
+                                            <br></br>
+                                            <h5 class="product-title font-alt">@cart.productName</h5>
+                                        <input type="hidden" id="productName" value="@cart.productName"></input
+                                     
+                                        </td>
+                                        <td class="hidden-xs">
+                                            <br></br>
+                                            <h5 class="product-title font-alt" id="price">@cart.price 원</h5>
+                                        </td>
+                                        <td>
+                                            <br></br>
+                                            <input type="hidden" name="quantity" id="quantity" value="@cart.quantity" disabled style="background-color:white;" />
+                                            <p>@cart.quantity</p>
+                                        </td>
+
+
+
+                                        <td>
+                                            <br></br>
+                                            <h5 class="product-title font-alt" id="totalPrice">@cart.totalPrice 원</h5>
+                                        </td>
+
+
+                                    </tr>
+
+                                <input type="hidden" id="memberId" value="@cart.memberId"></input>
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <input class="form-control" type="hidden" id="" name="" placeholder="Coupon code" />
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                        </div>
+                    </div>
+                    <div class="col-sm-3 col-sm-offset-3">
+                        <div class="form-group">
+                         
+                        </div>
+                    </div>
+                </div>
+                <hr class="divider-w">
+                <div class="row mt-70">
+                    <div class="col-sm-5 col-sm-offset-7">
+                        <div class="shop-Cart-totalbox">
+                            <h4 class="font-alt">Cart Totals</h4>
+                            <table class="table table-striped table-border checkout-table">
+                                <tbody>
+
+                                    <tr class="shop-Cart-totalprice">
+
+                                        <th>Total </th>
+                                        <td>@cartTotalPrice 원</td>
+                                    <input type="hidden" name="orderPrice" id="orderPrice" value="@cartTotalPrice" />
+
+                                    </tr>
+                                </tbody>
+                            </table>
+
+
+
+                            <button class="btn btn-lg btn-block btn-round btn-d" id="payment" type="submit">Order</button>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+@section scripts {
+
+        <script type="text/javascript"
+                src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
+
+
+    <script>
+
+            $(document).ready(function () {
+                var IMP = window.IMP;
+                IMP.init("imp88246600");
+
+                $('#payment').click(function () {
+
+
+                    IMP.request_pay({
+                        pg: 'kakaopay.TC0ONETIME',
+                        pay_method: "card", // 결제방식
+                        merchant_uid: 'merchant_' + new Date().getTime(), // 주문번호
+                        name: $('#productName').val(), // 상품명
+                        amount: $('#orderPrice').val(), // 결제 금액
+                       
+                     
+                    }, function (rsp) {
+                        if (rsp.success) {
+                            var msg = "결제 완료";
+                            msg += ' 고유ID : ' + rsp.imp_uid;
+                            msg += ' 상점 거래ID : ' + rsp.merchant_uid;
+                            msg += ' 결제 금액 : ' + rsp.paid_amount;
+                            msg += ' 카드 승인번호 : ' + rsp.apply_num;
+                            alert(msg);
+
+                            // 결제 완료 시 서버로 데이터 전송
+                            var productId = [];
+                            var cartId = [];
+                            var price = [];
+                            var totalPrice = [];
+                            var orderQuantity = [];
+
+            @foreach (var item in Model)
+            {
+                <text>
+
+                                cartId.push('@item.cartId');
+                                productId.push('@item.productId');
+                                price.push('@item.price');
+                                totalPrice.push('@item.totalPrice');
+                                orderQuantity.push('@item.quantity');
+                </text>
+            }
+
+              var dataToSend = {
+                                memberId: $('#memberId').val(), // 주문자회원번호
+                                cartId: cartId,
+                                productId: productId,
+                                price: price, // 각상품 1개당 가격
+                                totalPrice: totalPrice, // 각 상품별로 총액
+                                impUid: rsp.imp_uid, // 결제 고유 ID 추가
+                                orderNum: rsp.merchant_uid, // 상점 거래 ID 추가
+                                orderPrice: rsp.paid_amount, //최종 결제 금액 추가
+                                orderQuantity: orderQuantity, //각상품 구매수량
+                                orderStatus: "결제완료"
+
+
+                            };
+
+
+   $.ajax({
+                            type: 'POST',
+                            url: '/Order/payment',
+                            contentType: 'application/json',
+                            data: JSON.stringify(dataToSend), // 배열을 JSON 형식으로 변환
+                            success: function(data) {
+                                console.log("서버 응답:", data);
+                            },
+                            error: function(xhr, status, error) {
+                                console.log("에러:", xhr, status, error);
+                            }
+                        });
+                    } else {
+                        alert("결제 실패: " + rsp.error_msg);
+                    }
+                });
+            });
+        });
+    </script>
+}
