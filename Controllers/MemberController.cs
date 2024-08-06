@@ -12,116 +12,7 @@ namespace Unique.Controllers
 {
     public class MemberController : Controller
     {
-        // GET: MemberController
-        public ActionResult Mypage()
-        {
-
-            // int memberId = (int)HttpContext.Session.GetInt32("memberId");
-
-            using (var db = new UniqueDb())
-
-            {
-                var myPage = db.Members.Where(m => m.memberId.Equals(2)).FirstOrDefault(); //eqlus에 세션 멤버값 들어가야함
-
-
-                return View(myPage);
-            }
-
-        }
-
-            public ActionResult Update(Member model)
-            {
-
-            
-                    return View(model);
-              
-
-            }
-
-            [HttpPost]
-        public ActionResult UpdateOk(Member model)
-        {
-           
-           
-
-            if (ModelState.IsValid)
-            {
-
-                String pattern = @"^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$";
-                String Msg = "이메일 형식이 올바르지 않습니다";
-                bool isValid = Regex.IsMatch(model.email, pattern);
-                if (isValid) { 
-                 
-                }
-                else {
-
-                    ViewBag.ErrorMessage = Msg;
-                    return View(model);
-                }
-                using (var db = new UniqueDb())
-                {
-
-
-
-                    var userId = db.Members.FirstOrDefault(m => m.userId.Equals(model.userId));
-                    var nickName = db.Members.FirstOrDefault(m => m.nickName.Equals(model.nickName));
-                    var tel = db.Members.FirstOrDefault(m => m.tel.Equals(model.tel));
-                    var email = db.Members.FirstOrDefault(m => m.email.Equals(model.email));
-
-
-
-
-                    if (userId != null || nickName != null || tel != null || email != null)
-                    {
-
-                        ViewBag.userId = userId;
-                        ViewBag.nickName = nickName;
-                        ViewBag.tel = tel;
-                        ViewBag.email = email;
-                        return View(model);
-                    }
-
-
-
-                    else
-
-
-                    {
-
-                        var existingMember = db.Members.FirstOrDefault(m => m.memberId.Equals(model.memberId));
-
-                        if (existingMember == null)
-                        {
-                            // 유저가 존재하지 않으면 새로운 유저로 삽입
-                            ViewBag.ErrorMessage = "존재하지 않는 사용자입니다.";
-                            return View(model);
-                        }
-
-                        // 기존 엔티티의 값을 업데이트
-                        existingMember.userId = model.userId;
-                        existingMember.pwd = model.pwd;
-                        existingMember.userName = model.userName;
-                        existingMember.nickName = model.nickName;
-                        existingMember.tel = model.tel;
-                        existingMember.postcode = model.postcode;
-                        existingMember.address = model.address;
-                        existingMember.detailAddress = model.detailAddress;
-                        existingMember.extraAddress = model.extraAddress;
-                        existingMember.email = model.email;
-                        existingMember.birth = model.birth;
-                   
-
-                        db.SaveChanges();
-                    }
-                }
-                return Redirect("Login");
-
-
-            }
-
-
-            return View(model);
-        }
+      
 
 
         [HttpGet]
@@ -327,5 +218,158 @@ namespace Unique.Controllers
 
 
 
+        // GET: MemberController
+        public ActionResult Mypage()
+        {
+
+             int memberId = (int)HttpContext.Session.GetInt32("memberId");
+
+            using (var db = new UniqueDb())
+
+            {
+                var myPage = db.Members.Where(m => m.memberId.Equals(memberId)).FirstOrDefault(); //eqlus에 세션 멤버값 들어가야함
+                
+
+                return View(myPage);
+            }
+
+        }
+
+        public ActionResult Update(Member model)
+        {
+
+
+            return View(model);
+
+
+        }
+
+        [HttpPost]
+        public ActionResult UpdateOk(Member model)
+        {
+
+
+
+            if (ModelState.IsValid)
+            {
+
+                String pattern = @"^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$";
+                String Msg = "이메일 형식이 올바르지 않습니다";
+                bool isValid = Regex.IsMatch(model.email, pattern);
+                if (isValid)
+                {
+
+                }
+                else
+                {
+
+                    ViewBag.ErrorMessage = Msg;
+                    return View(model);
+                }
+                using (var db = new UniqueDb())
+                {
+
+
+
+                    var userId = db.Members.FirstOrDefault(m => m.userId.Equals(model.userId));
+                    var nickName = db.Members.FirstOrDefault(m => m.nickName.Equals(model.nickName));
+                    var tel = db.Members.FirstOrDefault(m => m.tel.Equals(model.tel));
+                    var email = db.Members.FirstOrDefault(m => m.email.Equals(model.email));
+
+
+
+
+                    if (userId != null || nickName != null || tel != null || email != null)
+                    {
+
+                        ViewBag.userId = userId;
+                        ViewBag.nickName = nickName;
+                        ViewBag.tel = tel;
+                        ViewBag.email = email;
+                        return View(model);
+                    }
+
+
+
+                    else
+
+
+                    {
+
+                        var existingMember = db.Members.FirstOrDefault(m => m.memberId.Equals(model.memberId));
+
+                        if (existingMember == null)
+                        {
+                            // 유저가 존재하지 않으면 새로운 유저로 삽입
+                            ViewBag.ErrorMessage = "존재하지 않는 사용자입니다.";
+                            return View(model);
+                        }
+
+                        // 기존 엔티티의 값을 업데이트
+                        existingMember.userId = model.userId;
+                        existingMember.pwd = model.pwd;
+                        existingMember.userName = model.userName;
+                        existingMember.nickName = model.nickName;
+                        existingMember.tel = model.tel;
+                        existingMember.postcode = model.postcode;
+                        existingMember.address = model.address;
+                        existingMember.detailAddress = model.detailAddress;
+                        existingMember.extraAddress = model.extraAddress;
+                        existingMember.email = model.email;
+                        existingMember.birth = model.birth;
+
+
+                        db.SaveChanges();
+                    }
+                }
+                return Redirect("Login");
+
+
+            }
+
+
+            return View(model);
+        }
+
+
+        [HttpPost]
+        public ActionResult Delete(Member model)
+        {
+
+            using (var db = new UniqueDb())
+            {
+                var order = db.Orders.Where(o => o.memberId == model.memberId).ToList();
+                var cart = db.Carts.Where(c => c.memberId == model.memberId).ToList();
+
+              
+                //공지삭제
+
+                //리뷰삭제
+
+                // 가져온 주문을 삭제합니다.
+                db.Orders.RemoveRange(order);
+                db.SaveChanges();
+
+                // 가져온 장바구니를 삭제합니다.
+                db.Carts.RemoveRange(cart);
+                db.SaveChanges();
+
+                // 가져온 회원을 삭제합니다.
+                db.Members.Remove(model);
+                db.SaveChanges();
+
+                return RedirectToAction("Login", "Member");
+            }
+           
+
+
+        }
+
+        
+
     }
+
+
+
+
 }

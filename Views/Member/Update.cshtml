@@ -35,7 +35,12 @@
                 <div class="col-sm-10 col-sm-offset-1 mb-sm-40">
 
                     <div class="col-sm-10">
-                        <h4 class="font-alt">Register</h4>
+                        <h4 class="font-alt">UPDATE</h4>
+                        <form class="form-horizontal" method="post" asp-controller="Member" asp-action="Delete">
+                            <input type="submit" id="delete" value="회원탈퇴" class="btn btn-primary py-3 px-5" style="background-color:black; margin-left:645px;" />
+                            <input type="hidden" name="memberId" value="@Model.memberId" />
+                        </form>
+                  
                         <hr class="divider-w mb-10">
                         <form class="form-horizontal" method="post" asp-controller="Member" asp-action="UpdateOk">
 
@@ -164,6 +169,16 @@
 
         <script>
 
+            $('#delete').click(function () {
+
+                if (!confirm("정말 회원탈퇴 하시겠습니까?\n확인(예) 또는 취소(아니오)를 선택해주세요.")) {
+                    return false; //아니오 버튼 클릭 시 이벤트
+                } else
+
+                    alert('회원탈퇴 완료하셨습니다. 그동안 이용해 주셔서 감사합니다.');
+                    return true;
+            });
+            
 
             $('#register').click(function () {
 

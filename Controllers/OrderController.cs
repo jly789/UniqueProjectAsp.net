@@ -13,13 +13,13 @@ namespace Unique.Controllers
         {
             var db = new UniqueDb();
 
-            // int memberId = (int)HttpContext.Session.GetInt32("memberId");
+             int memberId = (int)HttpContext.Session.GetInt32("memberId");
 
             var cartList = from cart in db.Carts
                            join product in db.Products
                            on cart.productId equals product.productId
 
-                           where cart.memberId == 2
+                           where cart.memberId == memberId
                            orderby cart.cartId descending
 
                            select new
@@ -114,7 +114,7 @@ namespace Unique.Controllers
         [HttpGet]
         public ActionResult List()
         {
-            // int memberId = (int)HttpContext.Session.GetInt32("memberId");
+             int memberId = (int)HttpContext.Session.GetInt32("memberId");
 
 
             var db = new UniqueDb();
@@ -124,7 +124,7 @@ namespace Unique.Controllers
                             join product in db.Products
                             on order.productId equals product.productId
 
-                            where order.memberId == 2
+                            where order.memberId == memberId
                             orderby order.orderId descending
 
                             select new

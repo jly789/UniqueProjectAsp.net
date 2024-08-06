@@ -24,14 +24,14 @@ namespace Unique.Controllers
 
             var db = new UniqueDb();
 
-           // int memberId = (int)HttpContext.Session.GetInt32("memberId");
+            int memberId = (int)HttpContext.Session.GetInt32("memberId");
 
             var cartList =  from cart in db.Carts
                                join product in db.Products
                                on cart.productId equals product.productId
                             
-                            where cart.memberId == 2
-                               orderby cart.cartId descending
+                            where cart.memberId == memberId
+                            orderby cart.cartId descending
 
                             select new
                                {

@@ -16,7 +16,7 @@ namespace Unique.Controllers
 
         public IActionResult Index()
         {
-            HttpContext.Session.SetInt32("memberId", 2);
+            HttpContext.Session.SetInt32("memberId", 1);
 
           
 
