@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Diagnostics;
 using Unique.DataContext;
 using Unique.Models;
@@ -16,11 +17,15 @@ namespace Unique.Controllers
 
         public IActionResult Index()
         {
-            HttpContext.Session.SetInt32("memberId", 1);
+     
 
-          
+            using (var db = new UniqueDb())
 
-            return View();
+            {
+            var List = db.Products.OrderBy(p => p.productId).Take(20).ToList();
+                return View(List);
+            }
+                
         }
 
         public IActionResult Login()

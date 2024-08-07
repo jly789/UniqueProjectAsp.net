@@ -42,7 +42,8 @@
                                 <th class="hidden-xs">Price</th>
                                 <th>Quantity</th>
                                 <th>Total</th>
-                                <th>Remove</th>
+                                <th>OrderStatus</th>
+                                <th>Cancel</th>
                             </tr>
 
 
@@ -51,7 +52,7 @@
                             @foreach (var order in Model)
                             {
 
-                                <tr style="text-align:center;">
+                                <tr style="text-align:center; background-color:white;">
                                     <td class="hidden-xs"><a href="#"><img src="~/images/upload/@order.productImage" alt="Accessories Pack" /></a></td>
                                     <td>
                                         <br></br>
@@ -59,7 +60,7 @@
                                     </td>
                                     <td class="hidden-xs">
                                         <br></br>
-                                        <h5 class="product-title font-alt" id="price">@order.price</h5>
+                                        <h5 class="product-title font-alt" id="price">@order.price 원</h5>
                                     </td>
                                     <td>
                                         <br></br>
@@ -74,7 +75,27 @@
                                         <h5 class="product-title font-alt" id="totalPrice">@order.totalPrice 원</h5>
                                     </td>
 
-                                    <td class="pr-remove"> <br></br><a href="/Order/OrderDelete?orderId= @order.orderId" title="Remove"><i class="fa fa-times"></i></a></td>
+                                    @if (order.orderStatus == "주문취소")
+                                    {
+                                    <td>
+                                        <br></br>
+                                     
+                                        <h5 class="product-title font-alt" style="color:red;" id="totalPrice">@order.orderStatus</h5>
+                                           
+                                    </td>
+                                     }
+                                    <td>
+                                        <br></br>
+
+                                        <h5 class="product-title font-alt" style="color:black;" id="totalPrice">@order.orderStatus</h5>
+
+                                    </td>
+
+
+                                    @if (order.orderStatus == "결제완료") {
+                                    <td class="pr-remove"> <br></br><a id="delete" href="/Order/OrderDelete?orderId= @order.orderId" title="Remove"><i class="fa fa-times"></i></a></td>
+
+                                    }
                                 </tr>
                             }
 
@@ -114,6 +135,15 @@
         <script>
 
 
+
+            $('#delete').click(function () {
+
+                if (!confirm("정말 주문취소 하시겠습니까?\n확인(예) 또는 취소(아니오)를 선택해주세요.")) {
+                    return false; //아니오 버튼 클릭 시 이벤트
+                } else
+                    alert("주문취소 완료되었습니다");
+                    return true;
+            });
 
 
         </script>

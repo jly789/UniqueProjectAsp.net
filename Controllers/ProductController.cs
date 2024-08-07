@@ -1,14 +1,11 @@
 ﻿
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
 using System.Data.Entity;
-using System.IO;
 using Unique.DataContext;
 using Unique.Models;
-
-using System.Linq;
 using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
+
+
 
 namespace Unique.Controllers
 {
@@ -133,25 +130,29 @@ namespace Unique.Controllers
         }
 
         [HttpGet]
-        public ActionResult List()
+        public ActionResult List(int pg = 1)
         {
 
             using (var db = new UniqueDb())
             {
 
-                var aa = db.Products.AsNoTracking().Include(p => p.Member).ToList();
-
-                foreach (var p in aa)
-                {
-                    Console.WriteLine(p.Member?.userName);
-                }
-
-
-                //   students = students.OrderByDescending(s => s.LastName);
-
                 var list = db.Products.OrderByDescending(p => p.productId).ToList();
 
-                return View(list);
+                const int pageSize = 4;
+                if (pg < 1)
+                    pg = 1;
+
+                int recsCount = list.Count();
+
+                var pager = new Pager(recsCount, pg, pageSize);
+
+                int recSkip = (pg - 1) * pageSize;
+
+                var data = list.Skip(recSkip).Take(pager.PageSize).ToList();
+
+                this.ViewBag.Pager = pager;
+
+                return View(data);
             }
 
 
@@ -160,7 +161,7 @@ namespace Unique.Controllers
         }
 
         [HttpPost]
-        public ActionResult SortList(String price, String category, String subcategory)
+        public ActionResult SortList(String price, String category, String subcategory,int pg=1)
         {
 
             if (price == "ALL" && category == "ALL")
@@ -174,9 +175,21 @@ namespace Unique.Controllers
 
                     var list = db.Products.OrderBy(p => p.productId).ToList();
 
+                    const int pageSize = 4;
+                    if (pg < 1)
+                        pg = 1;
 
+                    int recsCount = list.Count();
 
-                    return View(list);
+                    var pager = new Pager(recsCount, pg, pageSize);
+
+                    int recSkip = (pg - 1) * pageSize;
+
+                    var data = list.Skip(recSkip).Take(pager.PageSize).ToList();
+
+                    this.ViewBag.Pager = pager;
+
+                    return View(data);
                 }
 
             }

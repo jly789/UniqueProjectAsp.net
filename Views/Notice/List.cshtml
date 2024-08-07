@@ -31,10 +31,15 @@
                 </div>
             </div>
 
-            <form method="get" asp-controller="Notice" asp-action="Register">
+
+
+            @if (Context.Session.GetInt32("memberId") == 1)
+            {
+                <form method="get" asp-controller="Notice" asp-action="Register">
                 <button class="btn btn-lg btn-block btn-round btn-d" style="width:150px; margin-left:835px;" type="submit">Register</button>
             </form>
-
+                
+            }
             <hr class="divider-w pt-20">
             <div class="row" style="width:800px; margin-left:200px;">
                 <div class="col-sm-12">

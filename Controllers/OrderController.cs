@@ -136,6 +136,7 @@ namespace Unique.Controllers
                                 order.orderQuantity,
                                 order.price,
                                 order.totalPrice,
+                                order.orderStatus,
                                 product.productName,
                                 product.productImage,
                                 product.productImagePath,
@@ -152,20 +153,32 @@ namespace Unique.Controllers
 
         }
 
-
+        //주문취소
         public IActionResult OrderDelete(int orderId)
         {
             using (var db = new UniqueDb())
             {
-                Order order = new Order();
-                order.orderId = orderId;
              
 
-                db.Orders.Remove(order);
+                var deleteOrder = db.Orders.FirstOrDefault(n => n.orderId.Equals(orderId));
+
+
+                if (deleteOrder == null)
+                {
+
+                    return RedirectToAction("List", "Order");
+                }
+
+                // 기존 엔티티의 값을 업데이트
+                deleteOrder.orderStatus = "주문취소";
+             
                 db.SaveChanges();
                 return RedirectToAction("List", "Order");
-
             }
+
+        
+
+            
 
            
         }

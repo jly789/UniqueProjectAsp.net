@@ -16,6 +16,7 @@ namespace Unique.Controllers
             {
                 var noticeList = db.Notices.OrderByDescending(n=>n.noticeDate).ToList();
 
+                
 
                 return View(noticeList);
             }
