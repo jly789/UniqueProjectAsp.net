@@ -1,5 +1,6 @@
 ﻿
-
+drop table Notices;
+drop table Orders;
 drop table Carts;
 drop table ProductImgs;
 drop table Products;
@@ -36,10 +37,17 @@ CREATE TABLE [dbo].[Members] (
   values(1,'관리자','asd','asd','관리자','관리자입니다','01020893971','13280',
   '태평동','7210','x' ,'jly789@naver.com','1995-04-01');
 
+    SET IDENTITY_INSERT dbo.Members ON
    insert into Members(memberId,role,userId,pwd,userName,nickName,tel,postcode,address,
   detailAddress,extraAddress,email,birth)
   values(2,'회원','user1','user1','윤재일','비운의소나기','01012345678','13280',
   '태평동','7210','x' ,'user1@naver.com','1990-01-01');
+
+    SET IDENTITY_INSERT dbo.Members ON
+     insert into Members(memberId,role,userId,pwd,userName,nickName,tel,postcode,address,
+  detailAddress,extraAddress,email,birth)
+  values(3,'회원','user2','user2','user2','비운의소나기','01033334444','13280',
+  '태평동','7210','x' ,'user2@naver.com','1993-02-02');
 
   SET IDENTITY_INSERT dbo.Members OFF
 
@@ -124,9 +132,10 @@ CREATE TABLE [dbo].[Products] (
 	[categoryId]     INT            NOT NULL,
 	
     PRIMARY KEY CLUSTERED (productId ASC),
-    FOREIGN KEY ([memberId]) REFERENCES [dbo].[Members] ([memberId]),
+   
 	FOREIGN KEY ([categoryId]) REFERENCES [dbo].[Categorys] ([categoryId])
 );
+ --FOREIGN KEY ([memberId]) REFERENCES [dbo].[Members] ([memberId]),
 
  
   SET IDENTITY_INSERT dbo.Products ON insert into Products
@@ -226,6 +235,7 @@ CREATE TABLE [dbo].[Products] (
     [cartId]      INT  IDENTITY (1, 1) NOT NULL,
     [quantity]     INT NOT NULL,
 	[price]  INT NOT NULL,
+	[totalPrice]  INT NOT NULL,
 	[memberId] INT NOT NULL,
 	[productId] INT NOT NULL,
     CONSTRAINT [PK_cartId] PRIMARY KEY CLUSTERED ([cartId] ASC),
@@ -235,9 +245,58 @@ CREATE TABLE [dbo].[Products] (
 );
 
 
-SET IDENTITY_INSERT dbo.Carts ON insert into Carts(cartId,quantity,price,memberId,productId) values(1,1,150000,2,1);
- 
+SET IDENTITY_INSERT dbo.Carts ON insert into Carts(cartId,quantity,price,totalPrice,memberId,productId) values(1,1,10000,10000,2,1);
+ SET IDENTITY_INSERT dbo.Carts ON insert into Carts(cartId,quantity,price,totalPrice,memberId,productId) values(2,2,10000,20000,2,2);
 SET IDENTITY_INSERT dbo.Carts OFF
+
+
+
+   CREATE TABLE [dbo].[Orders] (
+    [orderId]       INT  IDENTITY (1, 1)     NOT NULL,
+   [orderQuantity]    INT NOT NULL,
+	[price]    INT NOT NULL,
+	[totalPrice]    INT NOT NULL,
+	 [orderPrice]    INT NOT NULL,
+	[orderNum]      VARCHAR (200)            NOT NULL,
+	[impUid]        VARCHAR (200)            NOT NULL,
+	[orderStatus]   VARCHAR (300)            NOT NULL,
+	[orderDate]     DATE  DEFAULT GETDATE()  NOT NULL,
+	[memberId]      INT NOT NULL, 
+	[productId]    INT NOT NULL, 
+	[cartId]        INT NOT NULL,
+
+    PRIMARY KEY CLUSTERED (orderId ASC),
+	FOREIGN KEY ([memberId]) REFERENCES [dbo].[Members] ([memberId]),
+	FOREIGN KEY ([productId]) REFERENCES [dbo].[Products] ([productId])
+	
+);
+
+SET IDENTITY_INSERT dbo.Orders ON insert into Orders(orderId,orderQuantity,price,totalPrice,orderPrice,orderNum,impUid,orderStatus,orderDate,memberId,productId,cartId)
+values(1,1,10000,10000,30000,1,1,'결제완료',GETDATE() ,2,1,1);
+
+SET IDENTITY_INSERT dbo.Orders ON insert into Orders(orderId,orderQuantity,price,totalPrice,orderPrice,orderNum,impUid,orderStatus,orderDate,memberId,productId,cartId)
+values(2,2,10000,20000,30000,1,1,'결제완료',GETDATE() ,2,2,2);
+
+
+SET IDENTITY_INSERT dbo.Orders OFF
+
+
+ CREATE TABLE [dbo].[Notices] (
+    [noticeId]       INT  IDENTITY (1, 1)     NOT NULL,
+	[noticeTitle]     VARCHAR (500)            NOT NULL,
+	[noticeContent]   VARCHAR (5000)            NOT NULL,
+	[noticeDate]     DATE  DEFAULT GETDATE()  NOT NULL,
+	[memberId]      INT NOT NULL, 
+
+    PRIMARY KEY CLUSTERED (noticeId ASC),
+	FOREIGN KEY ([memberId]) REFERENCES [dbo].[Members] ([memberId])	
+);
+
+
+ SET IDENTITY_INSERT dbo.Notices ON insert into Notices(noticeId,noticeTitle,noticeContent,noticeDate,memberId) values(1,'공지1','공지1입니다',GETDATE(),1);
+
+SET IDENTITY_INSERT dbo.Notices OFF
+
 
 
   select * from Members;
@@ -246,10 +305,13 @@ SET IDENTITY_INSERT dbo.Carts OFF
   select * from Products;
   select * from ProductImgs;
   select * from Carts;
+  select * from Orders;
+  select * from Notices;
+  
 
-  select * from Products
-  order by productId asc;
 
-  select * from Products
-  where productCategoryName='코트'
-  order by productPrice desc;
+
+
+
+
+   
