@@ -1,16 +1,14 @@
 ﻿
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Unique.DataContext;
 using Unique.Models;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace Unique.Controllers
 {
     public class NoticeController : Controller
     {
-        // GET: NoticeController
-        public ActionResult List()
+       
+        public ActionResult List() //공지 리스트 
         {
             using (var db = new UniqueDb())
             {
@@ -24,12 +22,9 @@ namespace Unique.Controllers
            
         }
 
-        // GET: NoticeController/Details/5
-        public ActionResult Detail(int noticeId)
+       
+        public ActionResult Detail(int noticeId) //공지 상세정보
         {
-
-          
-
 
             using (var db = new UniqueDb()) { 
 
@@ -49,7 +44,7 @@ namespace Unique.Controllers
         }
 
         [HttpGet]
-        public ActionResult Register()
+        public ActionResult Register() //공지 등록리스트 출력
         {
           
             int? memberId = HttpContext.Session.GetInt32("memberId");
@@ -67,9 +62,8 @@ namespace Unique.Controllers
             return View();
         }
 
-
         [HttpPost]
-        public ActionResult Register(Notice notice)
+        public ActionResult Register(Notice notice) //공지 등록
         {
             
             if (ModelState.IsValid)
@@ -89,20 +83,16 @@ namespace Unique.Controllers
         }
 
 
-
         [HttpGet]
-        public ActionResult Update(Notice notice)
+        public ActionResult Update(Notice notice) // 공지 수정리스트 출력
         {
-
 
                 return View(notice);
           
-
-         
         }
 
         [HttpPost]
-        public ActionResult Update(Notice notice,int id)
+        public ActionResult Update(Notice notice,int id) //공지 수정
         {
 
             if (ModelState.IsValid)
@@ -133,12 +123,10 @@ namespace Unique.Controllers
 
             return View(notice);
 
-
-
         }
 
         [HttpPost]
-        public ActionResult Delete(Notice notice)
+        public ActionResult Delete(Notice notice) // 공지삭제
         {
 
             using (var db = new UniqueDb())

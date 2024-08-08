@@ -1,11 +1,8 @@
 ﻿
 using Microsoft.AspNetCore.Mvc;
-
-using System.Data.Entity;
 using System.Text.RegularExpressions;
 using Unique.DataContext;
 using Unique.Models;
-
 
 
 namespace Unique.Controllers
@@ -16,12 +13,12 @@ namespace Unique.Controllers
 
 
         [HttpGet]
-        public ActionResult Login()
+        public ActionResult Login() // 회원 로그인페이지
         {
             return View();
         }
 
-        public ActionResult LogOut()
+        public ActionResult LogOut() // 회원 로그아웃
 
         {
             HttpContext.Session.Remove("memberId");
@@ -30,7 +27,7 @@ namespace Unique.Controllers
         }
 
         [HttpPost]
-        public ActionResult Login(MemberLogin model)
+        public ActionResult Login(MemberLogin model) // 회원 로그인
         {
 
            
@@ -59,7 +56,7 @@ namespace Unique.Controllers
         }
 
         [HttpGet]
-        public ActionResult Register()
+        public ActionResult Register() // 회원 회원가입 페이지 리스트
         {
             return View();
 
@@ -67,7 +64,7 @@ namespace Unique.Controllers
 
         //아이디중복체크
         [HttpPost]
-        public ActionResult IdCheck(String userId)
+        public ActionResult IdCheck(String userId) // 회원가입시 아이디 중복확인
         {
 
 
@@ -82,7 +79,7 @@ namespace Unique.Controllers
         }
 
         [HttpPost]
-        public ActionResult Register(Member model)
+        public ActionResult Register(Member model) // 회원 등록
         {
             if (ModelState.IsValid)
             {
@@ -142,14 +139,13 @@ namespace Unique.Controllers
         }
 
 
-        public ActionResult SearchUserId()
+        public ActionResult SearchUserId() // 회원 아이디찾기 페이지 출력
         {
             return View();
         }
         [HttpPost]
-        public ActionResult SearchUserId(Member model)
+        public ActionResult SearchUserId(Member model) // 회원 아이디 찾기
         {
-          
           
 
             using (var db = new UniqueDb())
@@ -159,14 +155,8 @@ namespace Unique.Controllers
 
                 if (id != null) {
 
-
-                   
-
-
-
-                   // Console.WriteLine(ViewBag.id);
                     ViewBag.userId = id.userId;
-                   // model.userId = id.userId;
+
                     return View(model);
                 }
                  
@@ -178,15 +168,14 @@ namespace Unique.Controllers
             return View(model);
         }
         [HttpGet]
-        public ActionResult SearchPwd()
+        public ActionResult SearchPwd() // 회원 비밀번호 찾기 페이지 출력
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult SearchPwd(Member model)
+        public ActionResult SearchPwd(Member model) // 회원 비밀번호 찾기
         {
-
 
 
             using (var db = new UniqueDb())
@@ -198,13 +187,7 @@ namespace Unique.Controllers
                 {
 
 
-
-
-
-
-                    // Console.WriteLine(ViewBag.id);
                     ViewBag.Pwd = pwd.pwd;
-                    // model.userId = id.userId;
                     return View(model);
                 }
 
@@ -217,9 +200,7 @@ namespace Unique.Controllers
         }
 
 
-
-        // GET: MemberController
-        public ActionResult Mypage()
+        public ActionResult Mypage() // 나의 페이지화면 출력
         {
 
              int memberId = (int)HttpContext.Session.GetInt32("memberId");
@@ -235,7 +216,7 @@ namespace Unique.Controllers
 
         }
 
-        public ActionResult Update(Member model)
+        public ActionResult Update(Member model) // 회원 수정페이지 출력
         {
 
 
@@ -245,10 +226,8 @@ namespace Unique.Controllers
         }
 
         [HttpPost]
-        public ActionResult UpdateOk(Member model)
+        public ActionResult UpdateOk(Member model) // 회원 수정
         {
-
-
 
             if (ModelState.IsValid)
             {
@@ -333,7 +312,7 @@ namespace Unique.Controllers
 
 
         [HttpPost]
-        public ActionResult Delete(Member model)
+        public ActionResult Delete(Member model) // 회원탈퇴
         {
 
             using (var db = new UniqueDb())

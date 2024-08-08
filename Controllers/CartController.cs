@@ -1,14 +1,7 @@
 ﻿
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
-using System;
-using System.Data.Entity;
 using Unique.DataContext;
 using Unique.Models;
-
-
-
 
 
 namespace Unique.Controllers
@@ -18,7 +11,7 @@ namespace Unique.Controllers
     {
 
         [HttpGet]
-        public   ActionResult List()
+        public   ActionResult List() //장바구니 페이지 출력
         {
 
 
@@ -55,15 +48,7 @@ namespace Unique.Controllers
 
           
           ViewBag.CartTotalPrice = cartTotalPrice;
-            
-            
-
-
-
-
-
-
-
+         
 
             //  int memberId = (int)HttpContext.Session.GetInt32("memberId");
 
@@ -153,18 +138,13 @@ namespace Unique.Controllers
 
 
             return View(cartList);
-            
-
-
-
+        
 
         }
 
-    
-
         [HttpPost]
-        // GET: CartController
-        public ActionResult List(int quantity, int price, int productId)
+   
+        public ActionResult List(int quantity, int price, int productId) // 장바구니 등록
         {
 
             using (var db = new UniqueDb())
@@ -186,12 +166,10 @@ namespace Unique.Controllers
             }
 
               
-
-
                
         }
 
-        public ActionResult CartDelete(int cartId)
+        public ActionResult CartDelete(int cartId) // 장바구니 삭제
         {
             Cart cart = new Cart();
             cart.cartId = cartId;
@@ -208,12 +186,7 @@ namespace Unique.Controllers
               
         }
 
-        
-
-
-     
-
-        // POST: CartController/Delete/5
+       
         [HttpPost]
 
         public ActionResult Delete()

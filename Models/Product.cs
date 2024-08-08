@@ -8,34 +8,28 @@ namespace Unique.Models
 
 
         [Key]
-        public int productId { get; set; }
-        public int productPrice { get; set; }
-        public int productView { get; set; }
+        public int productId { get; set; } //상품번호
+        public int productPrice { get; set; } //상품가격
+        public int productView { get; set; } //상품조회수
 
-        public String? productName { get; set; }
-        public String? productContent { get; set; }
-        public String? productBrand { get; set; }
+        public String? productName { get; set; } //상품이름
+        public String? productContent { get; set; } //상품내용
+        public String? productBrand { get; set; } //상품 브랜드
+
+        public String? productImage { get; set; } //상품이미지
+        public String? productImagePath { get; set; } //상품이미지 경로
+        public String? productCategoryName { get; set; } //상품카테고리 이름
+
+        public int memberId { get; set; } //회원번호
       
-        public String? productImage { get; set; }
-        public String? productImagePath { get; set; }
-        public String? productCategoryName { get; set; }
-      
-
-        public int memberId { get; set; }
-
-        [ForeignKey("memberId")]
-        public virtual Member? Member { get; set; }
-
-
-        public int categoryId { get; set; }
-
-        [ForeignKey("categoryId")]
-        public virtual Category? Category { get; set; }
+        public int categoryId { get; set; }//카테고리번호
 
 
 
 
-        
+
+
+
 
 
 

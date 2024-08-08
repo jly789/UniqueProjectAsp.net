@@ -9,20 +9,16 @@ namespace Unique.Models
 
 
         [Key]
-        public int productImgId { get; set; }
-      
-
-        public String? productImage { get; set; }
-        public String? productImagePath { get; set; }
-      
+        public int productImgId { get; set; } //상품이미지번호
 
 
-        public int productId { get; set; }
+        public String? productImage { get; set; } //상품이미지
+        public String? productImagePath { get; set; } //상품이미지경로
 
-    
 
-        [ForeignKey("productId")]
-        public virtual Product? Product { get; set; }
+
+        public int productId { get; set; } //상품번호
+
 
 
 

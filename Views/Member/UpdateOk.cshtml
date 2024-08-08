@@ -4,10 +4,6 @@
 @{
 
 
-
-
-
-
 }
 
 <style>
@@ -40,7 +36,7 @@
                         <form class="form-horizontal" method="post" asp-controller="Member" asp-action="UpdateOk">
 
                             <div class="form-group">
-                                <input type="text" class="form-control" id="memberId" name="memberId" value="@Model.memberId" placeholder="ID 입력" />
+                                <input type="hidden" class="form-control" id="memberId" name="memberId" value="@Model.memberId" placeholder="ID 입력" />
                                 <input type="text" class="form-control" id="userId" name="userId" value="@Model.userId" placeholder="ID 입력" />
                                 <span class="text-danger" asp-validation-for="userId"></span>
                                 <span class="text-danger">

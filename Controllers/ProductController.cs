@@ -19,17 +19,8 @@ namespace Unique.Controllers
             _environment = environment;
         }
 
-
-        // GET: ProductController
-        public ActionResult Index()
-        {
-
-
-            return View();
-        }
-
         [HttpGet]
-        public ActionResult Register()
+        public ActionResult Register() //상품 등록
         {
 
 
@@ -38,11 +29,8 @@ namespace Unique.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Register(Product model, IFormFile file)
+        public async Task<IActionResult> Register(Product model, IFormFile file) //상품 파일이미지 등록및 상품등록
         {
-
-
-
 
 
             var fileFullName = file.FileName.Split('.');
@@ -58,7 +46,6 @@ namespace Unique.Controllers
                 await file.CopyToAsync(fileStream);
             }
 
-            Console.WriteLine(path);
 
             model.memberId = 1;
             model.productImage = fileName;
@@ -82,11 +69,9 @@ namespace Unique.Controllers
         }
 
 
-
         [HttpPost]
-        public ActionResult CategoryCheck(String categoryName)
+        public ActionResult CategoryCheck(String categoryName) //카테고리를 선택할시 해당 하위카테고리 리스트 체크
         {
-
 
             using (var db = new UniqueDb())
             {
@@ -103,7 +88,7 @@ namespace Unique.Controllers
         }
 
         [HttpGet]
-        public ActionResult Detail(int productId)
+        public ActionResult Detail(int productId) //상품 상세리스트
         {
 
             using (var db = new UniqueDb())
@@ -121,24 +106,18 @@ namespace Unique.Controllers
                 return View(list);
             }
 
-
-
-
-            // var list = db.Products.Where(p => p.productCategoryName.Equals(subcategory)).OrderByDescending(p => p.productPrice).ToList();
-
-
         }
 
         [HttpGet]
-        public ActionResult List(int pg = 1)
+        public ActionResult List(int pg = 1) //상품 총 리스트
         {
 
             using (var db = new UniqueDb())
             {
 
-                var list = db.Products.OrderByDescending(p => p.productId).ToList();
+                var list = db.Products.OrderBy(p => p.productId).ToList();
 
-                const int pageSize = 4;
+                const int pageSize = 8;
                 if (pg < 1)
                     pg = 1;
 
@@ -156,15 +135,13 @@ namespace Unique.Controllers
             }
 
 
-
-
         }
 
         [HttpPost]
-        public ActionResult SortList(String price, String category, String subcategory,int pg=1)
+        public ActionResult SortList(String price, String category, String subcategory, int pg = 1) //상품 가격별,카테고리별 정렬 리스트
         {
 
-            if (price == "ALL" && category == "ALL")
+            if (price == "ALL" && category == "ALL") //가격및 카테고리가 모두 ALL일경우
             {
                 using (var db = new UniqueDb())
                 {
@@ -175,7 +152,7 @@ namespace Unique.Controllers
 
                     var list = db.Products.OrderBy(p => p.productId).ToList();
 
-                    const int pageSize = 4;
+                    const int pageSize = 8;
                     if (pg < 1)
                         pg = 1;
 
@@ -194,10 +171,8 @@ namespace Unique.Controllers
 
             }
 
-            if (price == "highPrice" && category == "ALL")
+            if (price == "highPrice" && category == "ALL") // 가격이 높은순,카테고리 전부로 조회할시 
             {
-
-
 
                 using (var db = new UniqueDb())
                 {
@@ -214,7 +189,7 @@ namespace Unique.Controllers
 
 
             }
-            if (price == "lowPrice" && category == "ALL")
+            if (price == "lowPrice" && category == "ALL") // 가격이 낮은순,카테고리 전부로 조회할시 
             {
 
 
@@ -233,7 +208,7 @@ namespace Unique.Controllers
             }
 
 
-            if (price == "highPrice" && category != "ALL")
+            if (price == "highPrice" && category != "ALL") // 가격이 높은순,카테고리 전부가 아닐시 조회
             {
 
 
@@ -252,7 +227,7 @@ namespace Unique.Controllers
 
 
             }
-            if (price == "lowPrice" && category != "ALL")
+            if (price == "lowPrice" && category != "ALL") // 가격이 낮은순,카테고리 전부가 아닐시 조회할시 
             {
 
 
@@ -271,9 +246,7 @@ namespace Unique.Controllers
 
             }
 
-
-
-            if (price == "ALL" && category != "ALL")
+            if (price == "ALL" && category != "ALL") // 가격상관없고,카테고리 전부가 아닐시 조회
             {
 
 
@@ -293,15 +266,6 @@ namespace Unique.Controllers
             }
 
 
-
-
-
-
-
-
-
-
-
             using (var db = new UniqueDb())
             {
                 ViewBag.price = price;
@@ -314,19 +278,17 @@ namespace Unique.Controllers
             }
 
 
-
-
         }
 
 
         [HttpGet]
-        public ActionResult Update(int productId)
+        public ActionResult Update(int productId) //상품 수정리스트 출력
         {
 
             using (var db = new UniqueDb())
             {
 
-                //  var list = db.Products.FirstOrDefault(p => p.productId.Equals(productId));
+
 
                 var list = db.Products.FirstOrDefault(p => p.productId.Equals(productId));
 
@@ -342,23 +304,15 @@ namespace Unique.Controllers
             }
 
 
-
-
         }
 
         [HttpPost]
-        public ActionResult Update(Product Model)
+        public ActionResult Update(Product Model) // 상품수정 출력
         {
 
-            Console.WriteLine(Model.productName);
-            Console.WriteLine(Model.productId);
-            Console.WriteLine(Model.productPrice);
-            Console.WriteLine(Model.productContent);
 
             using (var db = new UniqueDb())
             {
-
-
 
                 db.Update(Model);
                 db.SaveChanges();
@@ -367,13 +321,10 @@ namespace Unique.Controllers
             }
 
 
-
-
         }
 
 
-
-        public ActionResult Delete(Product Model)
+        public ActionResult Delete(Product Model) //상품 삭제
         {
 
             using (var db = new UniqueDb())
@@ -393,9 +344,5 @@ namespace Unique.Controllers
 
         }
     }
-
-
-
-
 
 }

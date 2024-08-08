@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
 using System.Diagnostics;
 using Unique.DataContext;
 using Unique.Models;
@@ -15,7 +14,7 @@ namespace Unique.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public IActionResult Index() // 기존 Unique 메인페이지 출력
         {
      
 
@@ -28,7 +27,7 @@ namespace Unique.Controllers
                 
         }
 
-        public IActionResult Login()
+        public IActionResult Login() // 로그인
         {
             return View();
         }

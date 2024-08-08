@@ -1,15 +1,14 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿
 using Microsoft.AspNetCore.Mvc;
 using Unique.DataContext;
 using Unique.Models;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Unique.Controllers
 {
     public class OrderController : Controller
     {
         [HttpGet]
-        public ActionResult Order()
+        public ActionResult Order() //해당 회원의 해당 주문해야할 상품나열 
         {
             var db = new UniqueDb();
 
@@ -49,13 +48,12 @@ namespace Unique.Controllers
 
 
         [HttpPost]
-        public ActionResult Payment([FromBody] PaymentData data)
+        public ActionResult Payment([FromBody] PaymentData data) //상품주문할 카카오결제 페이지
         {
             var db = new UniqueDb();
 
             Cart cart = new Cart();
 
-          
 
             if (data != null)
             {
@@ -80,15 +78,10 @@ namespace Unique.Controllers
 
                     };
 
-                 
 
                     db.Orders.Add(order);
                     db.SaveChanges();
 
-
-
-               
-                 
                 }
 
 
@@ -101,9 +94,7 @@ namespace Unique.Controllers
 
                 }
 
-
             }
-
 
             //1.여기서 cart 삭제해야함 
 
@@ -112,14 +103,14 @@ namespace Unique.Controllers
 
 
         [HttpGet]
-        public ActionResult List()
+        public ActionResult List() //해당회원에 이미 주문한 주문리스트 나열
         {
              int memberId = (int)HttpContext.Session.GetInt32("memberId");
 
 
             var db = new UniqueDb();
 
-            //   var myOrder = db.Orders.Where(o=>o.memberId.Equals(memberId)).ToList();
+          
             var orderList = from order in db.Orders
                             join product in db.Products
                             on order.productId equals product.productId
@@ -145,16 +136,12 @@ namespace Unique.Controllers
 
                             };
 
-
-
             return View(orderList);
-
-
 
         }
 
         //주문취소
-        public IActionResult OrderDelete(int orderId)
+        public IActionResult OrderDelete(int orderId) //주문한 상품 삭제(취소)
         {
             using (var db = new UniqueDb())
             {
@@ -176,16 +163,10 @@ namespace Unique.Controllers
                 return RedirectToAction("List", "Order");
             }
 
-        
-
-            
-
            
         }
 
     }
  
-
-
 
 }

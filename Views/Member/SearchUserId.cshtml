@@ -4,11 +4,7 @@
 @{
 
 
-
     String userId = ViewBag.userId;
-
-
-
 
 
 }
@@ -46,15 +42,6 @@
                     }
 
 
-                    @*       @if (Model.userId != null)
-                    {
-                    <p>찾는 사용자의 아이디는 @Model.userId 입니다. </p>
-                    }
-
-
-                    ViewBag.id *@
-
-
                     <hr class="divider-w mb-10">
                     <form class="form-horizontal" method="post" asp-controller="Member" asp-action="SearchUserId">
                         <div class="text-danger" asp-validation-summary="ModelOnly"></div>
@@ -62,10 +49,6 @@
                             <input type="text" class="form-control" asp-for="userName" placeholder="사용자 이름 입력" />
                             <span class="text-danger" asp-validation-for="userName"></span>
                         </div>
-
-
-
-
 
 
                         <div class="form-group">

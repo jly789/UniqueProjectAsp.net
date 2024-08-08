@@ -1,5 +1,4 @@
-﻿
-drop table Notices;
+﻿drop table Notices;
 drop table Orders;
 drop table Carts;
 drop table ProductImgs;
@@ -13,7 +12,7 @@ drop table Members;
 
 
 CREATE TABLE [dbo].[Members] (
-    [memberId]      INT           IDENTITY (1, 1) NOT NULL,
+    [memberId]      INT           IDENTITY (1, 1) NOT NULL, 
     [role]          VARCHAR (15)  DEFAULT ('회원') NOT NULL,
     [userId]        VARCHAR (50)  NOT NULL,
     [pwd]           VARCHAR (100) NOT NULL,
@@ -24,7 +23,7 @@ CREATE TABLE [dbo].[Members] (
     [address]       VARCHAR (100) NOT NULL,
     [detailAddress] VARCHAR (100) NULL,
     [extraAddress]  VARCHAR (100) NULL,
-    [email]         VARCHAR (50)  NOT NULL,
+    [email]         VARCHAR (100)  NOT NULL,
     [birth]         DATE          NOT NULL,
     CONSTRAINT [PK_Members] PRIMARY KEY CLUSTERED ([memberId] ASC)
 );
@@ -40,13 +39,13 @@ CREATE TABLE [dbo].[Members] (
     SET IDENTITY_INSERT dbo.Members ON
    insert into Members(memberId,role,userId,pwd,userName,nickName,tel,postcode,address,
   detailAddress,extraAddress,email,birth)
-  values(2,'회원','user1','user1','윤재일','비운의소나기','01012345678','13280',
+  values(2,'회원','user1','user1','user1','user1','01012345678','13280',
   '태평동','7210','x' ,'user1@naver.com','1990-01-01');
 
     SET IDENTITY_INSERT dbo.Members ON
      insert into Members(memberId,role,userId,pwd,userName,nickName,tel,postcode,address,
   detailAddress,extraAddress,email,birth)
-  values(3,'회원','user2','user2','user2','비운의소나기','01033334444','13280',
+  values(3,'회원','user2','user2','user2','user2','01033334444','13280',
   '태평동','7210','x' ,'user2@naver.com','1993-02-02');
 
   SET IDENTITY_INSERT dbo.Members OFF
@@ -93,23 +92,21 @@ SET IDENTITY_INSERT dbo.Subcategorys ON insert into Subcategorys(subCategoryId,s
 SET IDENTITY_INSERT dbo.Subcategorys ON insert into Subcategorys(subCategoryId,subCategoryName,categoryId) values(4,'패딩',1);
 SET IDENTITY_INSERT dbo.Subcategorys ON insert into Subcategorys(subCategoryId,subCategoryName,categoryId) values(5,'가죽',1);
 SET IDENTITY_INSERT dbo.Subcategorys ON insert into Subcategorys(subCategoryId,subCategoryName,categoryId) values(6,'바람막이',1);
-SET IDENTITY_INSERT dbo.Subcategorys ON insert into Subcategorys(subCategoryId,subCategoryName,categoryId) values(7,'야상',1);
-SET IDENTITY_INSERT dbo.Subcategorys ON insert into Subcategorys(subCategoryId,subCategoryName,categoryId) values(8,'긴팔니트',2);
-SET IDENTITY_INSERT dbo.Subcategorys ON insert into Subcategorys(subCategoryId,subCategoryName,categoryId) values(9,'반팔니트',2);
-SET IDENTITY_INSERT dbo.Subcategorys ON insert into Subcategorys(subCategoryId,subCategoryName,categoryId) values(10,'가디건',2);
-SET IDENTITY_INSERT dbo.Subcategorys ON insert into Subcategorys(subCategoryId,subCategoryName,categoryId) values(11,'폴라',2);
-SET IDENTITY_INSERT dbo.Subcategorys ON insert into Subcategorys(subCategoryId,subCategoryName,categoryId) values(12,'무지',3);
-SET IDENTITY_INSERT dbo.Subcategorys ON insert into Subcategorys(subCategoryId,subCategoryName,categoryId) values(13,'체크',3);
-SET IDENTITY_INSERT dbo.Subcategorys ON insert into Subcategorys(subCategoryId,subCategoryName,categoryId) values(14,'데님',3);
-SET IDENTITY_INSERT dbo.Subcategorys ON insert into Subcategorys(subCategoryId,subCategoryName,categoryId) values(15,'스트라이프',3);
-SET IDENTITY_INSERT dbo.Subcategorys ON insert into Subcategorys(subCategoryId,subCategoryName,categoryId) values(16,'데님',4);
-SET IDENTITY_INSERT dbo.Subcategorys ON insert into Subcategorys(subCategoryId,subCategoryName,categoryId) values(17,'슬랙스',4);
-SET IDENTITY_INSERT dbo.Subcategorys ON insert into Subcategorys(subCategoryId,subCategoryName,categoryId) values(18,'코튼',4);
-SET IDENTITY_INSERT dbo.Subcategorys ON insert into Subcategorys(subCategoryId,subCategoryName,categoryId) values(19,'반바지',4);
-SET IDENTITY_INSERT dbo.Subcategorys ON insert into Subcategorys(subCategoryId,subCategoryName,categoryId) values(20,'트레이닝',4);
-SET IDENTITY_INSERT dbo.Subcategorys ON insert into Subcategorys(subCategoryId,subCategoryName,categoryId) values(21,'신발',5);
-SET IDENTITY_INSERT dbo.Subcategorys ON insert into Subcategorys(subCategoryId,subCategoryName,categoryId) values(22,'가방',6);
-SET IDENTITY_INSERT dbo.Subcategorys ON insert into Subcategorys(subCategoryId,subCategoryName,categoryId) values(23,'액세서리',7);
+SET IDENTITY_INSERT dbo.Subcategorys ON insert into Subcategorys(subCategoryId,subCategoryName,categoryId) values(7,'긴팔니트',2);
+SET IDENTITY_INSERT dbo.Subcategorys ON insert into Subcategorys(subCategoryId,subCategoryName,categoryId) values(8,'반팔니트',2);
+SET IDENTITY_INSERT dbo.Subcategorys ON insert into Subcategorys(subCategoryId,subCategoryName,categoryId) values(9,'가디건',2);
+SET IDENTITY_INSERT dbo.Subcategorys ON insert into Subcategorys(subCategoryId,subCategoryName,categoryId) values(10,'폴라',2);
+SET IDENTITY_INSERT dbo.Subcategorys ON insert into Subcategorys(subCategoryId,subCategoryName,categoryId) values(11,'무지',3);
+SET IDENTITY_INSERT dbo.Subcategorys ON insert into Subcategorys(subCategoryId,subCategoryName,categoryId) values(12,'체크',3);
+SET IDENTITY_INSERT dbo.Subcategorys ON insert into Subcategorys(subCategoryId,subCategoryName,categoryId) values(13,'데님',3);
+SET IDENTITY_INSERT dbo.Subcategorys ON insert into Subcategorys(subCategoryId,subCategoryName,categoryId) values(14,'스트라이프',3);
+SET IDENTITY_INSERT dbo.Subcategorys ON insert into Subcategorys(subCategoryId,subCategoryName,categoryId) values(15,'데님',4);
+SET IDENTITY_INSERT dbo.Subcategorys ON insert into Subcategorys(subCategoryId,subCategoryName,categoryId) values(16,'슬랙스',4);
+SET IDENTITY_INSERT dbo.Subcategorys ON insert into Subcategorys(subCategoryId,subCategoryName,categoryId) values(17,'코튼',4);
+SET IDENTITY_INSERT dbo.Subcategorys ON insert into Subcategorys(subCategoryId,subCategoryName,categoryId) values(18,'반바지',4);
+SET IDENTITY_INSERT dbo.Subcategorys ON insert into Subcategorys(subCategoryId,subCategoryName,categoryId) values(19,'신발',5);
+SET IDENTITY_INSERT dbo.Subcategorys ON insert into Subcategorys(subCategoryId,subCategoryName,categoryId) values(20,'가방',6);
+SET IDENTITY_INSERT dbo.Subcategorys ON insert into Subcategorys(subCategoryId,subCategoryName,categoryId) values(21,'액세서리',7);
 
 
   SET IDENTITY_INSERT dbo.Subcategorys OFF
@@ -137,47 +134,1024 @@ CREATE TABLE [dbo].[Products] (
 );
  --FOREIGN KEY ([memberId]) REFERENCES [dbo].[Members] ([memberId]),
 
- 
+   --코트(아우터)-------------------------------------------------------------------------------------------------------------
   SET IDENTITY_INSERT dbo.Products ON insert into Products
   (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
     productCategoryName,memberId,categoryId)
-  values(1,150000,0,'1','아우터-코트','샤넬','코트-1-1.jpg',
+  values(1,150000,0,'더 메일 후드코트(2color)','연말이 다가오고 있네요,ㅎ 여자친구랑 손만 잡고 걸어도 좋은게 연말이 아닐까~ 싶은데 저는 아이들 손을 잡고 걸어봐야겠습니다,^^
+연말에 입으실만한 코트를 찾다가 그래도 좀 좋은걸로업뎃해보자해서 가져왔습니다 , 브랜드스럽게 옷을 제작하는업체로 코트퀄리티가 좋구요 , 울 60 % 혼용되어 따듯하고
+등판안쪽에 퀼팅마감되어 더욱더 좋습니다, 폴라류랑 깔끔하게 입으시면 여친이 좋아하지 않을까~싶구요 , 미리 행복한 크리스마스 되시길 바랍니다)','샤넬','코트-1-1.jpg',
   'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload코트-1-1.jpg','코트',1,1);
     SET IDENTITY_INSERT dbo.Products ON insert into Products
   (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
     productCategoryName,memberId,categoryId)
-  values(2,120000,0,'2','아우터-코트','구찌','코트-2-1.jpg',
+  values(2,120000,0,'크림 트렌치 워싱 코트','아우터-코트','구찌','코트-2-1.jpg',
   'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload코트-2-1.jpg','코트',1,1);
       SET IDENTITY_INSERT dbo.Products ON insert into Products
   (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
     productCategoryName,memberId,categoryId)
-  values(3,270000,0,'3','아우터-코트','나이키','코트-3-1.jpg',
+  values(3,270000,0,'Avec.프리미엄 울 코트','아우터-코트','나이키','코트-3-1.jpg',
   'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload코트-3-1.jpg','코트',1,1);
       SET IDENTITY_INSERT dbo.Products ON insert into Products
   (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
     productCategoryName,memberId,categoryId)
-  values(4,55000,0,'4','아우터-코트','아디다스','코트-4-1.jpg',
+  values(4,55000,0,'크리스마스 연말코트','아우터-코트','아디다스','코트-4-1.jpg',
   'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload코트-4-1.jpg','코트',1,1);
       SET IDENTITY_INSERT dbo.Products ON insert into Products
   (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
     productCategoryName,memberId,categoryId)
-  values(5,30000,0,'5','아우터-코트','ABC마트','코트-5-1.jpg',
+  values(5,30000,0,'에센셜 후드 울 코트','아우터-코트','자라','코트-5-1.jpg',
   'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload코트-5-1.jpg','코트',1,1);
         SET IDENTITY_INSERT dbo.Products ON insert into Products
   (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
     productCategoryName,memberId,categoryId)
-  values(6,20000,0,'6','아우터-코트','ABC마트','코트-6-1.jpg',
+  values(6,20000,0,'하이퀄리티 블렌드 자켓','아우터-코트','유니클로','코트-6-1.jpg',
   'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload코트-6-1.jpg','코트',1,1);
         SET IDENTITY_INSERT dbo.Products ON insert into Products
   (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
     productCategoryName,memberId,categoryId)
-  values(7,130000,0,'7','아우터-코트','ABC마트','코트-7-1.jpg',
+  values(7,130000,0,'G.트렌치코트','아우터-코트','스파오','코트-7-1.jpg',
   'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload코트-7-1.jpg','코트',1,1);
         SET IDENTITY_INSERT dbo.Products ON insert into Products
   (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
     productCategoryName,memberId,categoryId)
-  values(8,330000,0,'8','아우터-코트','ABC마트','코트-8-1.jpg',
+  values(8,330000,0,'엔터 발마칸 코트','아우터-코트','ABC마트','코트-8-1.jpg',
   'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload코트-8-1.jpg','코트',1,1);
+
+  select * from products;
+ --자켓(아우터)-------------------------------------------------------------------------------------------------------------
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(9,110000,0,'썸머 베스트 윈드자켓','아우터-자켓','구찌','자켓-1-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload자켓-1-1.jpg','자켓',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(10,120000,0,'에버 스트링 반팔셔킷','아우터-자켓','구찌','자켓-2-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload자켓-2-1.jpg','자켓',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(11,130000,0,'윌 써머 후드윈드 자켓','아우터-자켓','구찌','자켓-3-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload자켓-3-1.jpg','자켓',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(12,140000,0,'올리브 후드 윈드자켓','아우터-자켓','구찌','자켓-4-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload자켓-4-1.jpg','자켓',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(13,50000,0,'햄프 코튼 카라자켓','아우터-자켓','구찌','자켓-5-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload자켓-5-1.jpg','자켓',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(14,160000,0,'카라멜 트러커 자켓','아우터-자켓','구찌','자켓-6-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload자켓-6-1.jpg','자켓',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(15,170000,0,'심플 피그먼트 차이나 자켓','아우터-자켓','구찌','자켓-7-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload자켓-7-1.jpg','자켓',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(16,190000,0,'minimal.퀄리티 카라레더자켓','아우터-자켓','구찌','자켓-8-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload자켓-8-1.jpg','자켓',1,1);
+
+--수트(아우터)-------------------------------------------------------------------------------------------------------------
+  SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(17,330000,0,'마커 울 셋업','아우터-수트','ABC마트','수트-1-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload수트-1-1.jpg','수트',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(18,330000,0,'마커 울 셋업','아우터-수트','ABC마트','수트-2-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload수트-2-1.jpg','수트',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(19,330000,0,'체스트 미니멀 자켓','아우터-수트','ABC마트','수트-3-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload수트-3-1.jpg','수트',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(20,330000,0,'멜번 기모 수트','아우터-수트','ABC마트','수트-4-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload수트-4-1.jpg','수트',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(21,330000,0,'베를린 스탠다드 수트','아우터-수트','ABC마트','수트-5-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload수트-5-1.jpg','수트',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(22,330000,0,'쿨 에어 린넨 수트자켓','아우터-수트','ABC마트','수트-6-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload수트-6-1.jpg','수트',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(23,330000,0,'시티수트셋업','아우터-수트','ABC마트','수트-7-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload수트-7-1.jpg','수트',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(24,330000,0,'로엘 울 수트','아우터-수트','ABC마트','수트-8-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload수트-8-1.jpg','수트',1,1);
+--패딩(아우터)-------------------------------------------------------------------------------------------------------------
+
+  SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(25,330000,0,'성조기 경량 패딩반집업','아우터-패딩','ABC마트','패딩-1-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload패딩-1-1.jpg','패딩',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(26,330000,0,'경량 웰론 윈드 브레이커','아우터-패딩','ABC마트','패딩-2-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload패딩-2-1.jpg','패딩',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(27,330000,0,'카라패딩(KHAKI)','아우터-패딩','ABC마트','패딩-3-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload패딩-3-1.jpg','패딩',1,1);
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(28,330000,0,'이중 지퍼 덕다운 패딩','아우터-패딩','ABC마트','패딩-4-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload패딩-4-1.jpg','패딩',1,1);
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(29,330000,0,'유스카라패딩','아우터-패딩','ABC마트','패딩-5-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload패딩-5-1.jpg','패딩',1,1);
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(30,330000,0,'덕다운 패딩','아우터-패딩','ABC마트','패딩-6-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload패딩-6-1.jpg','패딩',1,1);
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(31,330000,0,'피오 웰론 패딩','아우터-패딩','ABC마트','패딩-7-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload패딩-7-1.jpg','패딩',1,1);
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(32,330000,0,'카본 후드 덕다운 패딩','아우터-패딩','ABC마트','패딩-8-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload패딩-8-1.jpg','패딩',1,1);
+--가죽(아우터)-------------------------------------------------------------------------------------------------------------
+  SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(33,330000,0,'minimal.퀄리티 카라레더자켓','아우터-가죽','ABC마트','가죽-1-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload가죽-1-1.jpg','가죽',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(34,330000,0,'올슨 차이나 바이커 레더자켓','아우터-가죽','ABC마트','가죽-2-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload가죽-2-1.jpg','가죽',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(35,330000,0,'무드 레더 하이넥 자켓','아우터-가죽','ABC마트','가죽-3-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload가죽-3-1.jpg','가죽',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(36,330000,0,'디얼 차이나카라 레더자켓','아우터-가죽','ABC마트','가죽-4-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload가죽-4-1.jpg','가죽',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(37,330000,0,'로드 차이나 레더자켓','아우터-가죽','ABC마트','가죽-5-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload가죽-5-1.jpg','가죽',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(38,330000,0,'쿠바 빈티지 레더자켓','아우터-가죽','ABC마트','가죽-6-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload가죽-6-1.jpg','가죽',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(39,330000,0,'하이퀄리티 레더자켓','아우터-가죽','ABC마트','가죽-7-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload가죽-7-1.jpg','가죽',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(40,330000,0,'자몽 무스탕','아우터-가죽','ABC마트','가죽-8-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload가죽-8-1.jpg','가죽',1,1);
+--바람막이(아우터)-------------------------------------------------------------------------------------------------------------
+
+  SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(41,330000,0,'써머 오아시스 바람막이','아우터-바람막이','ABC마트','바람막이-1-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload바람막이-1-1.jpg','바람막이',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(42,330000,0,'썸머 베스트 윈드자켓','아우터-바람막이','ABC마트','바람막이-2-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload바람막이-2-1.jpg','바람막이',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(43,330000,0,'포켓터블 후드바람막이','아우터-바람막이','ABC마트','바람막이-3-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload바람막이-3-1.jpg','바람막이',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(44,330000,0,'모스키토 써머 윈드후드자켓','아우터-바람막이','ABC마트','바람막이-4-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload바람막이-4-1.jpg','바람막이',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(45,330000,0,'쿨 아노락 반바지 셋업','아우터-바람막이','ABC마트','바람막이-5-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload바람막이-5-1.jpg','바람막이',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(46,330000,0,'윌 써머 후드윈드 자켓','아우터-바람막이','ABC마트','바람막이-6-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload바람막이-6-1.jpg','바람막이',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(47,330000,0,'베르 후드 바람막이 자켓','아우터-바람막이','ABC마트','바람막이-7-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload바람막이-7-1.jpg','바람막이',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(48,330000,0,'제주 윈드 후드자켓','아우터-바람막이','ABC마트','바람막이-8-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload바람막이-8-1.jpg','바람막이',1,1);
+--니트(긴팔니트)-------------------------------------------------------------------------------------------------------------
+  SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(49,330000,0,'오트 린넨긴팔니트','니트-긴팔니트','ABC마트','니트-1-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload니트-1-1.jpg','긴팔니트',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(50,330000,0,'스카시 쿨 집업 가디건','니트-긴팔니트','ABC마트','니트-2-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload니트-2-1.jpg','긴팔니트',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(51,330000,0,'비욘드 쿨 단가라 긴팔니트티','니트-긴팔니트','ABC마트','니트-3-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload니트-3-1.jpg','긴팔니트',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(52,330000,0,'유니하찌니트','니트-긴팔니트','ABC마트','니트-4-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload니트-4-1.jpg','긴팔니트',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(53,330000,0,'트레이스 소프트 카라니트','니트-긴팔니트','ABC마트','니트-5-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload니트-5-1.jpg','긴팔니트',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(54,330000,0,'메이 풀집업 카라니트','니트-긴팔니트','ABC마트','니트-6-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload니트-6-1.jpg','긴팔니트',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(55,330000,0,'고 하찌 라운드니트','니트-긴팔니트','ABC마트','니트-7-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload니트-7-1.jpg','긴팔니트',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(56,330000,0,'레벨 코튼 하찌 니트','니트-긴팔니트','ABC마트','니트-8-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload니트-8-1.jpg','긴팔니트',1,1);
+--반팔니트(니트)-------------------------------------------------------------------------------------------------------------
+  SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(57,330000,0,'머슬핏 쿨 반팔니트','니트-반팔니트','ABC마트','반팔니트-1-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload반팔니트-1-1.jpg','반팔니트',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(58,330000,0,'딘 스트라이프 카라반팔니트','니트-반팔니트','ABC마트','반팔니트-2-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload반팔니트-2-1.jpg','반팔니트',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(59,330000,0,'피그먼트 라운드 반팔니트','니트-반팔니트','ABC마트','반팔니트-3-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload반팔니트-3-1.jpg','반팔니트',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(60,330000,0,'타올지 카라반팔니트','니트-반팔니트','ABC마트','반팔니트-4-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload반팔니트-4-1.jpg','반팔니트',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(61,330000,0,'고 미니멀 반팔니트','니트-반팔니트','ABC마트','반팔니트-5-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload반팔니트-5-1.jpg','반팔니트',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(62,330000,0,'로반 쿨 카라반팔니트','니트-반팔니트','ABC마트','반팔니트-6-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload반팔니트-6-1.jpg','반팔니트',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(63,330000,0,'파인 부클 라운드니트','니트-반팔니트','ABC마트','반팔니트-7-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload반팔니트-7-1.jpg','반팔니트',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(64,330000,0,'옆줄 린넨 반팔카라니트','니트-반팔니트','ABC마트','반팔니트-8-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload반팔니트-8-1.jpg','반팔니트',1,1);
+--가디건(니트)-------------------------------------------------------------------------------------------------------------
+  SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(65,330000,0,'미작 히든버튼 반팔가디건','니트-가디건','ABC마트','가디건-1-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload가디건-1-1.jpg','가디건',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(66,330000,0,'모먼트 쿨 반팔가디건','니트-가디건','ABC마트','가디건-2-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload가디건-2-1.jpg','가디건',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(67,330000,0,'스카시 쿨 집업 가디건','니트-가디건','ABC마트','가디건-3-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload가디건-3-1.jpg','가디건',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(68,330000,0,'마일드 부클 카라반팔 가디건','니트-가디건','ABC마트','가디건-4-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload가디건-4-1.jpg','가디건',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(69,330000,0,'Y 케이블 쿨 카라반팔니트','니트-가디건','ABC마트','가디건-5-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload가디건-5-1.jpg','가디건',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(70,330000,0,'브릿 꽈베기 반팔가디건','니트-가디건','ABC마트','가디건-6-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload가디건-6-1.jpg','가디건',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(71,330000,0,'스프링 히든 절개 가디건','니트-가디건','ABC마트','가디건-7-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload가디건-7-1.jpg','가디건',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(72,330000,0,'메이 풀집업 카라니트','니트-가디건','ABC마트','가디건-8-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload가디건-8-1.jpg','가디건',1,1);
+
+--폴라(니트)-------------------------------------------------------------------------------------------------------------
+  SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(73,330000,0,'리프 반폴라 니트','니트-폴라','ABC마트','폴라-1-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload폴라-1-1.jpg','폴라',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(74,330000,0,'알랭드 하찌 반폴라 니트','니트-폴라','ABC마트','폴라-2-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload폴라-2-1.jpg','폴라',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(75,330000,0,'웰메이드 롱폴라 니트','니트-폴라','ABC마트','폴라-3-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload폴라-3-1.jpg','폴라',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(76,330000,0,'웰메이드 반폴라 니트','니트-폴라','ABC마트','코트-4-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload코트-4-1.jpg','폴라',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(77,330000,0,'베니 워머 폴라 오버핏 니트','니트-폴라','ABC마트','폴라-5-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload폴라-5-1.jpg','폴라',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(78,330000,0,'굿핏 반폴라 하찌 캐시 니트','니트-폴라','ABC마트','폴라-6-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload폴라-6-1.jpg','폴라',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(79,330000,0,'프룩 워셔블 반폴라 니트','니트-폴라','ABC마트','폴라-7-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload폴라-7-1.jpg','폴라',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(80,330000,0,'머핀 캐시미어 하프넥 니트','니트-폴라','ABC마트','폴라-8-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload폴라-8-1.jpg','폴라',1,1);
+
+--무지(셔츠)-------------------------------------------------------------------------------------------------------------
+  SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(81,330000,0,'프랩 나일론 반팔셔츠','셔츠-무지','ABC마트','무지-1-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload무지-1-1.jpg','무지',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(82,330000,0,'레몬 RN 쿨 반팔셔츠','셔츠-무지','ABC마트','무지-2-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload무지-2-1.jpg','무지',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(83,330000,0,'캘리포니아 반팔셔츠','셔츠-무지','ABC마트','무지-3-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload코트-3-1.jpg','코트',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(84,330000,0,'린넨라이크 반팔셔츠','셔츠-무지','ABC마트','무지-4-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload무지-4-1.jpg','무지',1,1);
+
+      SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(85,330000,0,'나일론 반팔셔츠 하프카고 셋업','셔츠-무지','ABC마트','무지-5-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload무지-5-1.jpg','무지',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(86,330000,0,'시티 써머 피그먼트 셔츠','셔츠-무지','ABC마트','무지-6-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload무지-6-1.jpg','무지',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(87,330000,0,'비오 시티반팔셔츠','셔츠-무지','ABC마트','무지-7-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload무지-7-1.jpg','무지',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(88,330000,0,'에버 스트링 반팔셔킷','셔츠-무지','ABC마트','무지-8-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload무지-8-1.jpg','무지',1,1);
+
+   
+--체크(셔츠)-------------------------------------------------------------------------------------------------------------
+ SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(89,330000,0,'글러브 체크반팔셔츠','셔츠-체크','ABC마트','체크-1-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload체크-1-1.jpg','체크',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(90,330000,0,'로아 시어서커 모던체크셔츠','셔츠-체크','ABC마트','체크-2-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload체크-2-1.jpg','체크',1,1);
+
+  SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(91,330000,0,'엔터 발마칸 코트','셔츠-체크','ABC마트','체크-3-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload체크-3-1.jpg','체크',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(92,330000,0,'외교 체크반팔셔츠','셔츠-체크','ABC마트','체크-4-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload체크-4-1.jpg','체크',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(93,330000,0,'비엔 쿨 반팔 체크셔츠','셔츠-체크','ABC마트','체크-5-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload코트-5-1.jpg','체크',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(94,330000,0,'트리 반팔체크셔츠','셔츠-체크','ABC마트','체크-6-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload체크-6-1.jpg','체크',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(95,330000,0,'리버뷰 린넨체크셔츠','셔츠-체크','ABC마트','체크-7-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload체크-7-1.jpg','체크',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(96,330000,0,'로드 린넨 체크셔츠','셔츠-체크','ABC마트','체크-8-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload체크-8-1.jpg','체크',1,1);
+
+  
+
+--데님(셔츠)-------------------------------------------------------------------------------------------------------------
+  SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(97,330000,0,'데님 셔츠 와이드팬츠 셋업','셔츠-데님','ABC마트','데님-1-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload데님-1-1.jpg','데님',1,1);
+
+   SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(98,330000,0,'로이 데님 셔츠 반바지 셋업','셔츠-데님','ABC마트','데님-2-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload데님-2-1.jpg','데님',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(99,330000,0,'진짜 데님반팔셔츠','셔츠-데님','ABC마트','데님-3-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload데님-3-1.jpg','데님',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(100,330000,0,'웨스턴 데님 반팔 셔츠','셔츠-데님','ABC마트','데님-4-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload데님-4-1.jpg','데님',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(101,330000,0,'플랩 생지 데님반팔남방','셔츠-데님','ABC마트','데님-5-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload데님-5-1.jpg','데님',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(102,330000,0,'라이프 오버 데님셔츠','셔츠-데님','ABC마트','데님-6-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload데님-6-1.jpg','데님',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(103,330000,0,'마드 투포켓 데님셔츠','셔츠-데님','ABC마트','데님-7-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload데님-7-1.jpg','데님',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(104,330000,0,'논페이드 데님남방','셔츠-데님','ABC마트','데님-8-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload데님-8-1.jpg','데님',1,1);
+
+ 
+--스트라이프(셔츠)-------------------------------------------------------------------------------------------------------------
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(105,330000,0,'레인 시어서커 셔츠','셔츠-스트라이프','ABC마트','스트라이프-1-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload스트라이프-1-1.jpg','스트라이프',1,1);
+
+      SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(106,330000,0,'블릭 써머 스트라이프 셔츠','셔츠-스트라이프','ABC마트','스트라이프-2-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload스트라이프-2-1.jpg','스트라이프',1,1);
+
+      SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(107,330000,0,'Dead Heat 패치 반팔셔츠','셔츠-스트라이프','ABC마트','스트라이프-3-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload스트라이프-3-1.jpg','스트라이프',1,1);
+
+      SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(108,330000,0,'앤트 린넨 스트라이프 반팔셔츠','셔츠-스트라이프','ABC마트','스트라이프-4-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload스트라이프-4-1.jpg','스트라이프',1,1);
+
+      SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(109,330000,0,'Vintage 스트라이프 반팔셔츠','셔츠-스트라이프','ABC마트','스트라이프-5-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload스트라이프-5-1.jpg','스트라이프',1,1);
+
+      SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(110,330000,0,'더 베이직 스트라이프 반팔셔츠','셔츠-스트라이프','ABC마트','스트라이프-6-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload스트라이프-6-1.jpg','스트라이프',1,1);
+
+      SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(111,330000,0,'더크 스트라이프 옥스포드 셔츠','셔츠-스트라이프','ABC마트','스트라이프-7-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload스트라이프-7-1.jpg','스트라이프',1,1);
+
+      SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(112,330000,0,'치즈 스트라이프 셔츠','셔츠-스트라이프','ABC마트','스트라이프-8-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload스트라이프-8-1.jpg','스트라이프',1,1);
+
+
+--데님(바지)-------------------------------------------------------------------------------------------------------------
+  SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(113,330000,0,'밸런스 린넨 와이드데님','바지-데님','ABC마트','데님-1-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload데님-1-1.jpg','데님',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(114,330000,0,'데님 셔츠 와이드팬츠 셋업','바지-데님','ABC마트','데님-2-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload데님-2-1.jpg','데님',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(115,330000,0,'로이 데님 셔츠 반바지 셋업','바지-데님','ABC마트','데님-3-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload데님-3-1.jpg','데님',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(116,330000,0,'오일 버뮤다 데님밴딩팬츠','바지-데님','ABC마트','데님-4-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload데님-4-1.jpg','데님',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(117,330000,0,'DUDE.데님 밴딩반바지','바지-데님','ABC마트','데님-5-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload데님-5-1.jpg','데님',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(118,330000,0,'린넨 화이트 데님팬츠','바지-데님','ABC마트','데님-6-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload데님-6-1.jpg','데님',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(119,330000,0,'COOL 린넨 데님팬츠','바지-데님','ABC마트','데님-7-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload데님-7-1.jpg','데님',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(120,330000,0,'쿨 데님 밴딩 반바지','바지-데님','ABC마트','데님-8-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload데님-8-1.jpg','데님',1,1);
+--슬랙스(바지)-------------------------------------------------------------------------------------------------------------
+  SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(121,330000,0,'비조 쿨 슬랙스','바지-슬랙스','ABC마트','슬랙스-1-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload슬랙스-1-1.jpg','슬랙스',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(122,330000,0,'플로리다 린넨팬츠','바지-슬랙스','ABC마트','슬랙스-2-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload슬랙스-2-1.jpg','슬랙스',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(123,330000,0,'투턱 린넨 와이드 팬츠','바지-슬랙스','ABC마트','슬랙스-3-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload슬랙스-3-1.jpg','슬랙스',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(124,330000,0,'오아시스 쿨 슬랙스','바지-슬랙스','ABC마트','슬랙스-4-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload슬랙스-4-1.jpg','슬랙스',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(125,330000,0,'프리미엄 린넨 슬랙스','바지-슬랙스','ABC마트','슬랙스-5-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload슬랙스-5-1.jpg','슬랙스',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(126,330000,0,'루비 린넨와이드핏 슬랙스','바지-슬랙스','ABC마트','슬랙스-6-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload슬랙스-6-1.jpg','슬랙스',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(127,330000,0,'와이드 밴딩슬랙스','바지-슬랙스','ABC마트','슬랙스-7-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload슬랙스-7-1.jpg','슬랙스',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(128,330000,0,'황금핏 린넨 와이드팬츠','바지-슬랙스','ABC마트','슬랙스-8-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload슬랙스-8-1.jpg','슬랙스',1,1);
+--코튼(바지)-------------------------------------------------------------------------------------------------------------
+  SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(129,330000,0,'쿨필 카고 린넨 와이드팬츠','바지-코튼','ABC마트','코튼-1-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload코튼-1-1.jpg','코튼',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(130,330000,0,'원스 CN 반바지','바지-코튼','ABC마트','코튼-2-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload코튼-2-1.jpg','코튼',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(131,330000,0,'린넨라이크 와이드팬츠','바지-코튼','ABC마트','코튼-3-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload코튼-3-1.jpg','코튼',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(132,330000,0,'플로리다 린넨팬츠','바지-코튼','ABC마트','코튼-4-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload코튼-4-1.jpg','코튼',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(133,330000,0,'투턱 린넨 와이드 팬츠','바지-코튼','ABC마트','코튼-5-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload코튼-5-1.jpg','코튼',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(134,330000,0,'레이 CN 팬츠','바지-코튼','ABC마트','코튼-6-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload코튼-6-1.jpg','코튼',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(135,330000,0,'데님 셔츠 와이드팬츠 셋업','바지-코튼','ABC마트','코튼-7-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload코튼-7-1.jpg','코튼',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(136,330000,0,'DUDE.버뮤다 팬츠','바지-코튼','ABC마트','코튼-8-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload코튼-8-1.jpg','코튼',1,1);
+--반바지(바지)-------------------------------------------------------------------------------------------------------------
+  SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(137,330000,0,'매쉬 수영복 팬츠','바지-반바지','ABC마트','반바지-1-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload반바지-1-1.jpg','반바지',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(138,330000,0,'코넨 반바지','바지-반바지','ABC마트','반바지-2-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload반바지-2-1.jpg','반바지',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(139,330000,0,'7인치 가성비 스판 숏팬츠','바지-반바지','ABC마트','반바지-3-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload반바지-3-1.jpg','반바지',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(140,330000,0,'원스 CN 반바지','바지-반바지','ABC마트','반바지-4-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload반바지-4-1.jpg','반바지',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(141,330000,0,'SUMMER 패커블 수영복 팬츠','바지-반바지','ABC마트','반바지-5-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload반바지-5-1.jpg','반바지',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(142,330000,0,'Hotel 윈드 반바지','바지-반바지','ABC마트','반바지-6-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload반바지-6-1.jpg','반바지',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(143,330000,0,'DUDE.카펜더 반바지','바지-반바지','ABC마트','반바지-7-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload반바지-7-1.jpg','반바지',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(144,330000,0,'CALIFORNIA 수영복 팬츠','바지-반바지','ABC마트','반바지-8-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload반바지-8-1.jpg','반바지',1,1);
+--신발-------------------------------------------------------------------------------------------------------------
+  SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(145,330000,0,'웨스턴 슬리퍼','신발','ABC마트','신발-1-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload신발-1-1.jpg','신발',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(146,330000,0,'커플 키높이 퍼 슬리퍼','신발','ABC마트','신발-2-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload신발-2-1.jpg','신발',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(147,330000,0,'지퍼첼시','신발','ABC마트','신발-3-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload신발-3-1.jpg','신발',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(148,330000,0,'러그더비로퍼','신발','ABC마트','신발-4-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload신발-4-1.jpg','신발',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(149,330000,0,'더비로퍼','신발','ABC마트','신발-5-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload신발-5-1.jpg','신발',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(150,330000,0,'오리지널 독일군 슈즈','신발','ABC마트','신발-6-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload신발-6-1.jpg','신발',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(151,330000,0,'베이직 스니커즈','신발','ABC마트','신발-7-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload신발-7-1.jpg','신발',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(152,330000,0,'데일리 더비로퍼','신발','ABC마트','신발-8-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload신발-8-1.jpg','신발',1,1);
+--가방-------------------------------------------------------------------------------------------------------------
+  SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(153,330000,0,'프룩 레더 크로스백','가방','ABC마트','가방-1-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload가방-1-1.jpg','가방',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(154,330000,0,'투유 레더 크로스백','가방','ABC마트','가방-2-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload가방-2-1.jpg','가방',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(155,330000,0,'고피플 에코백','가방','ABC마트','가방-3-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload가방-3-1.jpg','가방',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(156,330000,0,'스퀘어 레더 크로스백','가방','ABC마트','가방-4-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload가방-4-1.jpg','가방',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(157,330000,0,'AD.숄더백','가방','ABC마트','가방-5-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload가방-5-1.jpg','가방',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(158,330000,0,'NEW 크로스 백','가방','ABC마트','가방-6-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload가방-6-1.jpg','가방',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(159,330000,0,'클립 레더크로스백','가방','ABC마트','가방-7-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload가방-7-1.jpg','가방',1,1);
+
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(160,330000,0,'웰반사첼백','가방','ABC마트','가방-8-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload가방-8-1.jpg','가방',1,1);
+--액세서리-------------------------------------------------------------------------------------------------------------
+    SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(161,330000,0,'플립 썬그라스','액세서리','ABC마트','액세서리-1-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload액세서리-1-1.jpg','액세서리',1,1);
+
+      SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(162,330000,0,'콜로라도 볼캡','액세서리','ABC마트','액세서리-2-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload액세서리-2-1.jpg','액세서리',1,1);
+
+      SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(163,330000,0,'GPL.BELT','액세서리','ABC마트','액세서리-3-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload액세서리-3-1.jpg','액세서리',1,1);
+
+      SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(164,330000,0,'스퀘어 레더벨트','액세서리','ABC마트','액세서리-4-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload액세서리-4-1.jpg','액세서리',1,1);
+
+      SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(165,330000,0,'BRKN.볼캡','액세서리','ABC마트','액세서리-5-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload액세서리-5-1.jpg','액세서리',1,1);
+
+      SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(166,330000,0,'twist belt','액세서리','ABC마트','액세서리-6-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload액세서리-6-1.jpg','액세서리',1,1);
+
+      SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(167,330000,0,'mini.스퀘어 벨트','액세서리','ABC마트','액세서리-7-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload액세서리-7-1.jpg','액세서리',1,1);
+
+      SET IDENTITY_INSERT dbo.Products ON insert into Products
+  (productId,productPrice,productView,productName,productContent,productBrand,productImage,productImagePath,
+   productCategoryName,memberId,categoryId)
+  values(168,330000,0,'실팔찌 그리고 발찌','액세서리','ABC마트','액세서리-8-1.jpg',
+  'C:\Users\jly78\source\repos\Unique\wwwroot\images\upload액세서리-8-1.jpg','액세서리',1,1);
+
+
+  select * from products;
 
    SET IDENTITY_INSERT dbo.Products OFF
 
@@ -206,28 +1180,44 @@ CREATE TABLE [dbo].[Products] (
     SET IDENTITY_INSERT dbo.ProductImgs ON insert into ProductImgs
   (productImgId,productImage,productImagePath,productId)
   values(5,'코트-1-5.jpg','C:\Users\jly78\source\repos\Unique\wwwroot\images\upload코트-1-5.jpg',1);
+      SET IDENTITY_INSERT dbo.ProductImgs ON insert into ProductImgs
+  (productImgId,productImage,productImagePath,productId)
+  values(6,'코트-2-1.jpg','C:\Users\jly78\source\repos\Unique\wwwroot\images\upload코트-2-1.jpg',2);
+      SET IDENTITY_INSERT dbo.ProductImgs ON insert into ProductImgs
+  (productImgId,productImage,productImagePath,productId)
+  values(7,'코트-3-1.jpg','C:\Users\jly78\source\repos\Unique\wwwroot\images\upload코트-3-1.jpg',3);
+      SET IDENTITY_INSERT dbo.ProductImgs ON insert into ProductImgs
+  (productImgId,productImage,productImagePath,productId)
+  values(8,'코트-4-1.jpg','C:\Users\jly78\source\repos\Unique\wwwroot\images\upload코트-4-1.jpg',4);
+      SET IDENTITY_INSERT dbo.ProductImgs ON insert into ProductImgs
+  (productImgId,productImage,productImagePath,productId)
+  values(9,'코트-5-1.jpg','C:\Users\jly78\source\repos\Unique\wwwroot\images\upload코트-5-1.jpg',5);
+      SET IDENTITY_INSERT dbo.ProductImgs ON insert into ProductImgs
+  (productImgId,productImage,productImagePath,productId)
+  values(10,'코트-6-1.jpg','C:\Users\jly78\source\repos\Unique\wwwroot\images\upload코트-6-1.jpg',6);
+      SET IDENTITY_INSERT dbo.ProductImgs ON insert into ProductImgs
+  (productImgId,productImage,productImagePath,productId)
+  values(11,'코트-7-1.jpg','C:\Users\jly78\source\repos\Unique\wwwroot\images\upload코트-7-1.jpg',7);
+      SET IDENTITY_INSERT dbo.ProductImgs ON insert into ProductImgs
+  (productImgId,productImage,productImagePath,productId)
+  values(12,'코트-8-1.jpg','C:\Users\jly78\source\repos\Unique\wwwroot\images\upload코트-8-1.jpg',8);
 
   SET IDENTITY_INSERT dbo.ProductImgs ON insert into ProductImgs
   (productImgId,productImage,productImagePath,productId)
-  values(6,'코트-2-1.jpg','C:\Users\jly78\source\repos\Unique\wwwroot\images\upload코트-2-1.jpg',2);
+  values(13,'자켓-1-1.jpg','C:\Users\jly78\source\repos\Unique\wwwroot\images\upload자켓-1-1.jpg',9);
   SET IDENTITY_INSERT dbo.ProductImgs ON insert into ProductImgs
   (productImgId,productImage,productImagePath,productId)
-  values(7,'코트-3-1.jpg','C:\Users\jly78\source\repos\Unique\wwwroot\images\upload코트-3-1.jpg',3);
+  values(14,'자켓-1-2.jpg','C:\Users\jly78\source\repos\Unique\wwwroot\images\upload자켓-1-2.jpg',9);
   SET IDENTITY_INSERT dbo.ProductImgs ON insert into ProductImgs
   (productImgId,productImage,productImagePath,productId)
-  values(8,'코트-4-1.jpg','C:\Users\jly78\source\repos\Unique\wwwroot\images\upload코트-4-1.jpg',4);
+  values(15,'자켓-1-3.jpg','C:\Users\jly78\source\repos\Unique\wwwroot\images\upload자켓-1-3.jpg',9);
   SET IDENTITY_INSERT dbo.ProductImgs ON insert into ProductImgs
   (productImgId,productImage,productImagePath,productId)
-  values(9,'코트-5-1.jpg','C:\Users\jly78\source\repos\Unique\wwwroot\images\upload코트-5-1.jpg',5);
+  values(16,'자켓-1-4.jpg','C:\Users\jly78\source\repos\Unique\wwwroot\images\upload자켓-1-4.jpg',9);
   SET IDENTITY_INSERT dbo.ProductImgs ON insert into ProductImgs
   (productImgId,productImage,productImagePath,productId)
-  values(10,'코트-6-1.jpg','C:\Users\jly78\source\repos\Unique\wwwroot\images\upload코트-6-1.jpg',6);
-  SET IDENTITY_INSERT dbo.ProductImgs ON insert into ProductImgs
-  (productImgId,productImage,productImagePath,productId)
-  values(11,'코트-7-1.jpg','C:\Users\jly78\source\repos\Unique\wwwroot\images\upload코트-7-1.jpg',7);
-  SET IDENTITY_INSERT dbo.ProductImgs ON insert into ProductImgs
-  (productImgId,productImage,productImagePath,productId)
-  values(12,'코트-8-1.jpg','C:\Users\jly78\source\repos\Unique\wwwroot\images\upload코트-8-1.jpg',8);
+  values(17,'자켓-1-5.jpg','C:\Users\jly78\source\repos\Unique\wwwroot\images\upload자켓-1-5.jpg',9);
+
 
   SET IDENTITY_INSERT dbo.ProductImgs OFF
 
@@ -294,7 +1284,15 @@ SET IDENTITY_INSERT dbo.Orders OFF
 
 
  SET IDENTITY_INSERT dbo.Notices ON insert into Notices(noticeId,noticeTitle,noticeContent,noticeDate,memberId) values(1,'공지1','공지1입니다',GETDATE(),1);
-
+  SET IDENTITY_INSERT dbo.Notices ON insert into Notices(noticeId,noticeTitle,noticeContent,noticeDate,memberId) values(2,'공지2','공지2입니다',GETDATE(),1)
+   SET IDENTITY_INSERT dbo.Notices ON insert into Notices(noticeId,noticeTitle,noticeContent,noticeDate,memberId) values(3,'공지3','공지3입니다',GETDATE(),1)
+    SET IDENTITY_INSERT dbo.Notices ON insert into Notices(noticeId,noticeTitle,noticeContent,noticeDate,memberId) values(4,'공지4','공지4입니다',GETDATE(),1)
+	 SET IDENTITY_INSERT dbo.Notices ON insert into Notices(noticeId,noticeTitle,noticeContent,noticeDate,memberId) values(5,'공지5','공지5입니다',GETDATE(),1)
+	  SET IDENTITY_INSERT dbo.Notices ON insert into Notices(noticeId,noticeTitle,noticeContent,noticeDate,memberId) values(6,'공지6','공지6입니다',GETDATE(),1)
+	   SET IDENTITY_INSERT dbo.Notices ON insert into Notices(noticeId,noticeTitle,noticeContent,noticeDate,memberId) values(7,'공지7','공지7입니다',GETDATE(),1)
+	    SET IDENTITY_INSERT dbo.Notices ON insert into Notices(noticeId,noticeTitle,noticeContent,noticeDate,memberId) values(8,'공지8','공지8입니다',GETDATE(),1)
+		 SET IDENTITY_INSERT dbo.Notices ON insert into Notices(noticeId,noticeTitle,noticeContent,noticeDate,memberId) values(9,'공지9','공지9입니다',GETDATE(),1)
+		  SET IDENTITY_INSERT dbo.Notices ON insert into Notices(noticeId,noticeTitle,noticeContent,noticeDate,memberId) values(10,'공지10','공지10입니다',GETDATE(),1)
 SET IDENTITY_INSERT dbo.Notices OFF
 
 

@@ -8,16 +8,15 @@ namespace Unique.Models
     public class SubCategory
     {
         [Key]
-        public int subCategoryId { get; set; }
+        public int subCategoryId { get; set; } //하위카테고리 번호
 
 
-        public String? subCategoryName { get; set; }
+        public String? subCategoryName { get; set; } //하위카테고리 이름
 
-  
-        public int categoryId { get; set; }
 
-       [ForeignKey("categoryId")]
-        public virtual Category? Category { get; set; }
+        public int categoryId { get; set; } //카테고리 번호
+
+      
        
 
      
